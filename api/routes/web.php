@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('setup', function() {
+Route::get('/token', function () {
     $credentials = [
         'email' => 'admin@admin.com',
         'password' => 'password'
@@ -28,13 +29,13 @@ Route::get('setup', function() {
     if (!Auth::attempt($credentials)) {
         $user = \App\Models\User::where('email', $credentials['email'])->first();
 
-        if (!$user) {
-            $user = new \App\Models\User();
-            $user->name = 'Admin';
-            $user->email = $credentials['email'];
-            $user->password = Hash::make($credentials['password']);
-            $user->save();
-        }
+    if (!$user) {
+        $user = new \App\Models\User();
+        $user->name = 'Admin';
+        $user->email = $credentials['email'];
+        $user->password = Hash::make($credentials['password']);
+        $user->save();
+    }
 
         if (!Auth::attempt($credentials)) {
             return response()->json(['error' => 'Authentication failed'], 401);
@@ -43,13 +44,10 @@ Route::get('setup', function() {
 
     $user = Auth::user();
 
-    $adminToken = $user->createToken('admin-token', ['create', 'update', 'delete']);
-    $updateToken = $user->createToken('update-token', ['create', 'update']);
-    $basicToken = $user->createToken('basic-token', ['none']);
+    $userToken = $user->createToken('main');
 
     return [
-        'admin' => $adminToken->plainTextToken,
-        'update' => $updateToken->plainTextToken,
-        'basic' => $basicToken->plainTextToken,
+        'user' => new UserResource($user),
+        'token' => $userToken->plainTextToken,
     ];
 });
