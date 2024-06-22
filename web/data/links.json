@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Accueil",
+    "link": "/",
+    "icon": "mdi-home"
+  },
+  {
+    "title": "Utilisateurs",
+    "link": "/user",
+    "icon": "mdi-account-group"
+  },
+  {
+    "title": "Articles",
+    "link": "/article",
+    "icon": "mdi-invoice-list"
+  }
+]
