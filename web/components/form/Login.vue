@@ -9,11 +9,12 @@
           :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append-inner="showPassword = !showPassword" :rules="passwordRules"></v-text-field>
         <div class="d-flex justify-end ga-3">
-          <v-btn append-icon="mdi-login" text="Se Connecter" color="primary" @click="login">SE CONNECTER</v-btn>
+          <v-btn append-icon="mdi-login" text="Se Connecter" color="primary" @click="login" :loading="loading">SE
+            CONNECTER</v-btn>
         </div>
       </div>
     </v-card>
-    <v-alert v-if="showError" text="Email ou Mot de passe incorrect" type="error" dismissible></v-alert>
+    <v-alert v-if="error" :text="error" type="error" dismissible></v-alert>
   </div>
 </template>
 
@@ -25,7 +26,6 @@ const theme = useThemeStore()
 
 const router = useRouter()
 const showPassword = ref(false)
-const showError = ref(false)
 
 const emailRules = [
   v => !!v || 'L\'email est requis',
@@ -42,16 +42,15 @@ import { useAuthStore } from '~/stores/auth'; // import the auth store we just c
 
 const { authenticateUser } = useAuthStore(); // use authenticateUser action from  auth store
 
-const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+const { authenticated, loading, error } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 
 const user = ref({
-  email: 'jhon@example.org', 
+  email: 'jhon@example.org',
   password: 'password',
 });
 
 const login = async () => {
-  await authenticateUser(user.value); // call authenticateUser and pass the user object
-  // redirect to homepage if user is authenticated
+  await authenticateUser(user.value);
   if (authenticated) {
     router.push('/');
   }

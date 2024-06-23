@@ -1,33 +1,52 @@
+import {
+  type UserInterface,
+  type UserWithTokenInterface,
+} from "~/interfaces/user.interface";
+
 interface UserPayloadInterface {
   email: string;
   password: string;
 }
 
-export const useAuthStore = defineStore("auth", {
+export const useAuthStore = defineStore("authStore", {
   state: () => ({
     authenticated: false,
     loading: false,
+    error: null as string | null,
+    user: null as UserInterface | null,
   }),
   actions: {
     async authenticateUser({ email, password }: UserPayloadInterface) {
       const config = useRuntimeConfig();
       try {
         this.loading = true;
-        const data: any = await $fetch(config.public.apiUrl + "/login", {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: {
-            email,
-            password,
-          },
-        });
+        this.error = null;
+        const data = await $fetch<UserWithTokenInterface>(
+          config.public.apiUrl + "/login",
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: {
+              email,
+              password,
+            },
+          }
+        );
 
         if (data && data.token) {
           const token = useCookie("token");
-          token.value = data.token; // set token to cookie
-          this.authenticated = true; // set authenticated state value to true
+          token.value = data.token;
+
+          const userCookie = useCookie("user");
+          userCookie.value = JSON.stringify(data.user);
+
+          this.user = data.user;
+          this.authenticated = true;
+        } else {
+          this.error = "Email ou Mot de passe incorrect"; // Set error message
         }
       } catch (error) {
+        this.error = "Une erreur est survenue, email ou mot de passe incorrect";
         console.error("Authentication failed:", error);
       } finally {
         this.loading = false;
@@ -35,7 +54,9 @@ export const useAuthStore = defineStore("auth", {
     },
     async logUserOut() {
       const token = useCookie("token");
+      const userCookie = useCookie("user");
       const config = useRuntimeConfig();
+
       try {
         const res: any = await $fetch(config.public.apiUrl + "/logout", {
           method: "post",
@@ -45,13 +66,27 @@ export const useAuthStore = defineStore("auth", {
           },
         });
 
-        if (res?.success) {
-          this.authenticated = false; // set authenticated state value to false
-          token.value = null; // clear the token cookie
+        if (res) {
+          this.authenticated = false;
+          this.user = null;
+          token.value = null;
+          userCookie.value = null;
           navigateTo("/login");
         }
       } catch (error) {
-        console.error("Logout failed:", error);
+        console.error("Erreur lors de la deconnexion.", error);
+      }
+    },
+    initializeStore() {
+      const token = useCookie("token").value;
+      const userCookie = useCookie("user").value;
+
+      // console.log(userCookie);
+
+      if (token && userCookie) {
+        this.authenticated = true;
+        // this.user = JSON.parse(userCookie);
+        console.log(decodeURIComponent(userCookie));
       }
     },
   },

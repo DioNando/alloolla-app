@@ -4,7 +4,7 @@
             <BaseNavigation />
         </v-navigation-drawer>
         <v-app-bar app color="primary">
-            <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title>Alloolla</v-app-bar-title>
             <ButtonTheme class="mr-4" />
         </v-app-bar>
@@ -14,12 +14,14 @@
     </v-app>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref } from 'vue'
 
-const drawer = ref(false)
+const drawer = ref(null)
+</script>
 
-const toggleDrawer = () => {
-    drawer.value = !drawer.value
+<script>
+export default {
+    data: () => ({ drawer: null }),
 }
 </script>
