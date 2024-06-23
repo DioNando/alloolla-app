@@ -9,7 +9,7 @@
             </v-list>
         </div>
         <v-list>
-            <v-list-item prepend-icon="mdi-logout" title="Deconnexion" link @click="handleLogout"></v-list-item>
+            <v-list-item prepend-icon="mdi-logout" title="Deconnexion" link @click="logout"></v-list-item>
         </v-list>
     </div>
 </template>
@@ -18,13 +18,17 @@
 import { useRouter } from 'vue-router'
 import links from '~/data/links.json'
 
-const router = useRouter()
+import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
+import { useAuthStore } from '~/stores/auth'; // import the auth store we just created
 
-const handleLogout = () => {
-    // Effectuer ici les opérations de déconnexion si nécessaire, puis rediriger vers /login
-    // Par exemple, effacer les données utilisateur ou les tokens
+const router = useRouter();
 
-    // Rediriger vers la page /login
-    router.push('/login')
-}
+
+const { logUserOut } = useAuthStore(); // use authenticateUser action from  auth store
+const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+
+const logout = () => {
+  logUserOut();
+//   router.push('/login');
+};
 </script>
