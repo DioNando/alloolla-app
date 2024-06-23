@@ -25,6 +25,6 @@ const handleLogout = () => {
     // Par exemple, effacer les données utilisateur ou les tokens
 
     // Rediriger vers la page /login
-    router.push('/user/login')
+    router.push('/login')
 }
 </script>

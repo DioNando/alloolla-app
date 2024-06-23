@@ -18,7 +18,9 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
   ],
   runtimeConfig: {
-    public: {},
+    public: {
+      apiUrl: process.env.API_URL,
+    },
   },
   vite: {
     vue: {

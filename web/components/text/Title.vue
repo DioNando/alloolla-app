@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p class="title" :class="theme.isDark ? 'dark' : 'light'">{{ props.title }}</p>
+        <!-- <p class="title" :class="theme.isDark ? 'dark' : 'light'">{{ props.title }}</p> -->
+        <p class="title bg-primary">{{ props.title }}</p>
     </div>
 </template>
 

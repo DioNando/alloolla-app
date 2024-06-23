@@ -10,12 +10,12 @@ const myCustomLightTheme: ThemeDefinition = {
   colors: {
     background: "#ffffff",
     surface: "#ffffff",
-    primary: "#38a3a5",
-    secondary: "#57cc99",
-    error: "#e63946",
-    info: "#ffb703",
-    success: "#16db65",
-    warning: "#fb8500",
+    primary: "#ffe66b",
+    secondary: "#6b95ff",
+    error: "#ff4d4d",
+    info: "#4da6ff",
+    success: "#4dff88",
+    warning: "#ffb84d",
   },
 };
 
@@ -24,12 +24,12 @@ const myCustomDarkTheme: ThemeDefinition = {
   colors: {
     background: "#1c1d23",
     surface: "#343640",
-    primary: "#38a3a5",
-    secondary: "#57cc99",
-    error: "#e63946",
-    info: "#ffb703",
-    success: "#16db65",
-    warning: "#fb8500",
+    primary: "#ffe66b",
+    secondary: "#6b95ff",
+    error: "#ff4d4d",
+    info: "#4da6ff",
+    success: "#4dff88",
+    warning: "#ffb84d",
   },
 };
 

@@ -4,24 +4,23 @@
             <template v-if="error?.statusCode === 404">
                 <div class="error__content">
                     <div class="text-primary text-h2">404!</div>
-                    <div class="text-h4">Sorry, that page doesn't exist.</div>
+                    <div class="text-h4">Desolé, cette page n'existe pas.</div>
                     <div>
                         <v-btn append-icon="mdi-home" color="primary" rounded variant="outlined" class="mt-4 text-none"
-                            @click="handleError">Go
-                            home</v-btn>
+                            @click="handleError">Retour à l'accueil
+                        </v-btn>
                     </div>
                 </div>
             </template>
             <template v-else>
                 <div class="error__content">
                     <div class="text-primary text-h3">Dang</div>
-                    <div class="text-primary text-h2">Error {{ error?.statusCode }}</div>
-                    <p class="text-h4">It looks like something broke.</p>
-                    <p class="text-h5">Sorry about that.</p>
+                    <div class="text-primary text-h2">Erreur {{ error?.statusCode }}</div>
+                    <p class="text-h4">Il semble avoir un problème.</p>
+                    <p class="text-h5">Desolé pour ça.</p>
                     <div>
                         <v-btn append-icon="mdi-home" color="primary" rounded variant="outlined" class="mt-4 text-none"
-                            @click="handleError">Go
-                            home</v-btn>
+                            @click="handleError">Retour à l'accueil</v-btn>
                     </div>
                 </div>
             </template>
