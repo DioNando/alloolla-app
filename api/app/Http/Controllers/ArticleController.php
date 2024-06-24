@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ArticlesFilter;
+use App\Http\Resources\ArticleCollection;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -12,9 +15,18 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = new ArticlesFilter();
+        $queryItems = $filter->transform($request); // [['column', 'operator', 'value']]
+
+        if (count($queryItems) == 0) {
+            return new ArticleCollection(Article::with('user')->paginate(20));
+        } else {
+            $articles = Article::where($queryItems)->with('user')->paginate(20);
+
+            return new ArticleCollection($articles->appends($request->query()));
+        }
     }
 
     /**
@@ -46,7 +58,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        // $article = Article::with('user')->findOrFail($article);
+        // return new ArticleResource($article);
+
+        return new ArticleResource($article->loadMissing('user'));
     }
 
     /**

@@ -19,6 +19,7 @@ class ArticleResource extends JsonResource
             'userId' => $this->user_id,
             'amount' => $this->amount,
             'status' => $this->status,
+            'user' => new UserResource($this->whenLoaded('user')),
         ];
     }
 }

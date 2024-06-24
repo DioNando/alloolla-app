@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\UsersFilter;
+use App\Http\Resources\ArticleResource;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -20,13 +21,13 @@ class UserController extends Controller
         $filter = new UsersFilter();
         $filterItems = $filter->transform($request); // [['column', 'operator', 'value']]
 
-        // $isAdmin = $request->query('isAdmin');
+        $includeArticles = $request->query('includeArticles');
 
         $users = user::where($filterItems);
 
-        // if ($isAdmin) {
-        //     $users = $users->with('isAdmin');
-        // }
+        if ($includeArticles) {
+            $users = $users->with('articles');
+        }
 
         return new UserCollection($users->paginate()->appends($request->query()));
     }
@@ -50,7 +51,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $includeArticles = request()->query('includeArticles');
+
         $data = User::findOrFail($id);
+
+        if ($includeArticles) {
+            return new UserResource($data->loadMissing('articles'));
+        }
+
         return new UserResource($data);
     }
 
