@@ -1,11 +1,11 @@
 <template>
   <div class="button--top" v-if="posY > 350">
-    <v-btn icon="mdi-chevron-up" @click="scrollToTop" :color="theme.isDark ? 'dark' : 'secondary'"></v-btn>
+    <v-btn icon="mdi-chevron-up" @click="scrollToTop" :color="themeStore.isDark ? 'dark' : 'secondary'"></v-btn>
   </div>
 </template>
 
 <script setup lang="ts">
-const theme = useThemeStore()
+const themeStore = useThemeStore()
 
 const posY = ref(0)
 

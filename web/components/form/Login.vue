@@ -1,6 +1,6 @@
 <template>
   <div class="form mx-auto d-flex flex-column ga-6">
-    <v-card class="pa-6" :class="[theme.isDark ? 'bg-grey-lighten-4' : '']" :elevation="0">
+    <v-card class="pa-6" :class="[themeStore.isDark ? '' : 'bg-grey-lighten-4']" :elevation="0">
       <TextTitle :title="'Connexion'" />
       <div class="d-flex flex-column ga-3">
         <v-text-field v-model="user.email" label="Email" prepend-icon="mdi-account" variant="outlined"
@@ -22,7 +22,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const theme = useThemeStore()
+const themeStore = useThemeStore()
 
 const router = useRouter()
 const showPassword = ref(false)

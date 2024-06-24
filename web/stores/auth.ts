@@ -3,6 +3,8 @@ import {
   type UserWithTokenInterface,
 } from "~/interfaces/user.interface";
 
+import { destr, safeDestr } from "destr";
+
 interface UserPayloadInterface {
   email: string;
   password: string;
@@ -81,12 +83,15 @@ export const useAuthStore = defineStore("authStore", {
       const token = useCookie("token").value;
       const userCookie = useCookie("user").value;
 
-      // console.log(userCookie);
-
       if (token && userCookie) {
-        this.authenticated = true;
-        // this.user = JSON.parse(userCookie);
-        console.log(decodeURIComponent(userCookie));
+        try {
+          this.user = destr(userCookie);
+          this.authenticated = true;
+        } catch (e) {
+          console.error("Error parsing user cookie:", e);
+          this.user = null;
+          this.authenticated = false;
+        }
       }
     },
   },

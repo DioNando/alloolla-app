@@ -29,6 +29,5 @@ const { authenticated } = storeToRefs(useAuthStore()); // make authenticated sta
 
 const logout = () => {
   logUserOut();
-//   router.push('/login');
 };
 </script>

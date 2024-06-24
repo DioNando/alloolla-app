@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <p class="title" :class="theme.isDark ? 'dark' : 'light'">{{ props.title }}</p> -->
+        <!-- <p class="title" :class="themeStore.isDark ? 'dark' : 'light'">{{ props.title }}</p> -->
         <p class="title bg-primary">{{ props.title }}</p>
     </div>
 </template>
@@ -10,7 +10,7 @@ const props = defineProps<{
     title: string
 }>()
 
-const theme = useThemeStore()
+const themeStore = useThemeStore()
 </script>
 
 <style lang="scss" scoped>
