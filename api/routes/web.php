@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/token', function () {
+Route::get('/admin', function () {
     $credentials = [
         'email' => 'admin@admin.com',
         'password' => 'password'

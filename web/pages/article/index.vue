@@ -1,7 +1,6 @@
 <template>
     <section class="pa-2">
         <TextTitle :title="'Articles'" />
-        <TableUser />
     </section>
 </template>
 

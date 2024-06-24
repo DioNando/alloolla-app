@@ -2,8 +2,9 @@
     <section class="pa-2">
         <TextTitle :title="'Utilisateurs'" />
         <div>
-            <CardUser :user="user" />
-            <TableUser class="mt-2" />
+            <!-- FIXME: null is not assignable -->
+            <CardUser :user="user" class="mb-2" />
+            <TableUser />
         </div>
     </section>
 </template>

@@ -45,7 +45,7 @@ const { authenticateUser } = useAuthStore(); // use authenticateUser action from
 const { authenticated, loading, error } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 
 const user = ref({
-  email: 'jhon@example.org',
+  email: 'admin@admin.com',
   password: 'password',
 });
 

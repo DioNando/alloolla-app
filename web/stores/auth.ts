@@ -24,9 +24,9 @@ export const useAuthStore = defineStore("authStore", {
         this.loading = true;
         this.error = null;
         const data = await $fetch<UserWithTokenInterface>(
-          config.public.apiUrl + "/login",
+          `${config.public.apiUrl}/login`,
           {
-            method: "post",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: {
               email,
@@ -60,8 +60,8 @@ export const useAuthStore = defineStore("authStore", {
       const config = useRuntimeConfig();
 
       try {
-        const res: any = await $fetch(config.public.apiUrl + "/logout", {
-          method: "post",
+        const res: any = await $fetch(`${config.public.apiUrl}/logout`, {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token.value}`,
