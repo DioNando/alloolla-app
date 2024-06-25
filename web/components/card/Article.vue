@@ -1,48 +1,53 @@
 <template>
-    <v-card class="card" border :elevation="0">
-        <v-img height="150" :src="product.image" cover></v-img>
+  <v-card variant="tonal" class="bg-white card">
+    <div class="pa-2">
+      <div class="d-flex justify-center">
+        <v-img height="200" width="300" :src="product.image" class="ma-4"></v-img>
+      </div>
+      <v-card-item>
+        <v-card-title>{{ product.title }}</v-card-title>
 
-        <v-card-item>
-            <v-card-title>{{ props.article.name }}</v-card-title>
+        <v-card-subtitle>
+          <span class="me-1">{{ product.category }}</span>
+        </v-card-subtitle>
+      </v-card-item>
+      <v-card-actions class="d-flex align-center justify-space-between">
+        <v-btn variant="text" icon="mdi-chevron-up" @click="reveal = true">
+        </v-btn>
+        <v-btn :to="`/articles/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+          class="text-none">Consulter</v-btn>
+      </v-card-actions>
+    </div>
+    <!-- <v-expand-transition> -->
+    <v-card v-if="reveal" class="pa-2 d-flex flex-column justify-space-between v-card--reveal">
+      <v-card-text class="pb-0">
+        <p class="text-h6 text--primary">{{ product.title }}</p>
+        <p class="text-subtitle text--primary">{{ product.category }}</p>
+        <v-divider class="my-2"></v-divider>
+        <p class="lines">
+          {{ product.description }}
+        </p>
+      </v-card-text>
 
-            <v-card-subtitle class="d-flex align-center">
-                <span class="me-1">{{ props.article.amount }}</span>
-                <!-- TODO: Ajouter attribut isAvailable -->
-                <v-icon color="error" icon="mdi-fire-circle" size="large"></v-icon>
-            </v-card-subtitle>
-        </v-card-item>
-
-        <v-card-text>
-            <div class="card__description">{{ props.article.description }}</div>
-        </v-card-text>
-
-        <!-- <v-divider class="mx-4 mb-1"></v-divider> -->
-
-        <!-- <div class="px-4 mb-2">
-            <v-chip-group selected-class="bg-deep-purple-lighten-2">
-                <v-chip>5:30PM</v-chip>
-
-                <v-chip>7:30PM</v-chip>
-
-                <v-chip>8:00PM</v-chip>
-
-                <v-chip>9:00PM</v-chip>
-            </v-chip-group>
-        </div> -->
-
-        <v-card-actions class="d-flex justify-end">
-            <v-btn class="text-none" text="Details" color="secondary" append-icon="mdi-chevron-right"
-                variant="text" :to="`/articles/${props.article.id}`"></v-btn>
-        </v-card-actions>
+      <v-card-actions class="d-flex align-center justify-space-between">
+        <v-btn variant="text" color="white" icon="mdi-close" @click="reveal = false" class="text-none">
+        </v-btn>
+        <v-btn :to="`/articles/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+          class="text-none">Consulter</v-btn>
+      </v-card-actions>
     </v-card>
+    <!-- </v-expand-transition> -->
+  </v-card>
 </template>
 
 <script setup lang="ts">
 import { type ArticleInterface } from "~/interfaces/article.interface";
 
 const props = defineProps<{
-    article: ArticleInterface
+  article: ArticleInterface
 }>()
+
+const reveal = ref(false);
 
 const { data: product } = await useFetch<any>(`https://fakestoreapi.com/products/${props.article.id}`);
 </script>
@@ -50,12 +55,24 @@ const { data: product } = await useFetch<any>(`https://fakestoreapi.com/products
 <style lang="scss" scoped>
 @import "~/assets/scss/style.scss";
 
-.card {
-    flex: 1;
-    min-width: 250px;
+a {
+  text-decoration: none;
+}
 
-    &__description {
-        @include paragraph-overflow-hidden(3);
-    }
+.card {
+  position: relative;
+
+  .v-card--reveal {
+    // bottom: 0;
+    top: 0;
+    opacity: 1 !important;
+    position: absolute;
+    // width: 100%;
+    height: 100%;
+  }
+}
+
+.lines {
+  @include paragraph-overflow-hidden(5);
 }
 </style>

@@ -1,12 +1,13 @@
 <template>
     <div class="pa-2">
-        <v-row align="center" no-gutters class="mt-1">
-            <v-col class="text-h3 font-weight-bold" cols="auto">
+        <div class="d-flex align-center justify-space-between">
+            <ButtonBack />
+            <div class="text-h4 font-weight-bold">
                 Details du produit {{ product.id }}
-            </v-col>
-        </v-row>
+            </div>
+        </div>
         <v-row align="start" justify="start" class="flex-column flex-md-row mt-3">
-            <v-col>
+            <v-col lg="4" md="5" sm="12">
                 <v-card variant="tonal">
                     <v-img :src="product.image" class="ma-6"></v-img>
                 </v-card>
