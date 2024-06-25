@@ -6,12 +6,12 @@
   },
   {
     "title": "Utilisateurs",
-    "link": "/user",
+    "link": "/users",
     "icon": "mdi-account-group"
   },
   {
     "title": "Articles",
-    "link": "/article",
+    "link": "/articles",
     "icon": "mdi-invoice-list"
   }
 ]

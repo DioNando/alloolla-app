@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->string('name');
+            $table->longText('description')->nullable(true);
             $table->integer('amount');
             $table->string('status');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

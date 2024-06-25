@@ -10,9 +10,17 @@
 </template>
 
 <script setup lang="ts">
+import { type UserInterface } from "~/interfaces/user.interface"
+
 const authStore = useAuthStore();
 
 authStore.initializeStore();
 
-const user = computed(() => authStore.user);
+// const user = ref<UserInterface>({
+//     id: 0,
+//     name: "Inconnu",
+//     email: "Inconnu@mail.com"
+// });
+
+const user = authStore.user;
 </script>

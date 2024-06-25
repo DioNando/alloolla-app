@@ -18,11 +18,13 @@ class ArticleFactory extends Factory
     public function definition()
     {
         $status = $this->faker->randomElement(['D', 'R']);
-
+// TODO: ajouter les attributs
         return [
-            'user_id' => User::factory(),
-            'amount' => $this->faker->numberBetween(100, 20000),
+            'name' => fake()->sentence(rand(2,5)),
+            'description' => fake()->realText(200),
+            'amount' => fake()->numberBetween(100, 20000),
             'status' => $status,
+            'user_id' => User::factory(),
         ];
     }
 }

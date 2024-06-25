@@ -1,11 +1,11 @@
 <template>
     <v-card color="primary" max-width="344">
         <v-card-title>
-            {{ user?.name }}
+            {{ props.user.name }}
         </v-card-title>
 
         <v-card-subtitle class="mb-4">
-            {{ user?.email }}
+            {{ props.user.email }}
         </v-card-subtitle>
     </v-card>
 </template>

@@ -21,9 +21,9 @@ class ArticleController extends Controller
         $queryItems = $filter->transform($request); // [['column', 'operator', 'value']]
 
         if (count($queryItems) == 0) {
-            return new ArticleCollection(Article::with('user')->paginate(20));
+            return new ArticleCollection(Article::with('user')->paginate(10));
         } else {
-            $articles = Article::where($queryItems)->with('user')->paginate(20);
+            $articles = Article::where($queryItems)->with('user')->paginate(10);
 
             return new ArticleCollection($articles->appends($request->query()));
         }

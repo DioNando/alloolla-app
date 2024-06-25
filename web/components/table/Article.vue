@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="table">
         <v-skeleton-loader v-if="loading" class="border" type="table"></v-skeleton-loader>
         <v-table class="border" v-else fixed-header>
             <thead>
@@ -11,20 +11,30 @@
                         Nom
                     </th>
                     <th class="text-left">
-                        Email
+                        Description
+                    </th>
+                    <th class="text-left">
+                        Quantité
+                    </th>
+                    <th class="text-left">
+                        Statut
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user in users" :key="user.id">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
+                <tr v-for="article in articles" :key="article.id">
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.name }}</td>
+                    <td>
+                        <p class="table__description">{{ article.description }}</p>
+                    </td>
+                    <td>{{ article.amount }}</td>
+                    <td>{{ article.status }}</td>
                 </tr>
             </tbody>
         </v-table>
 
-        <div class="mt-2">
+        <div class="table__pagination mt-2">
             <v-pagination v-model="page" :length="meta.last_page" rounded="circle"></v-pagination>
         </div>
         <!-- <div>
@@ -39,12 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { getUsers } from '@/api/userApi'
+import { getArticles } from '@/api/articleApi'
 
-import { type UserInterface } from "~/interfaces/user.interface";
+import { type ArticleInterface } from "~/interfaces/article.interface";
 import { type Meta } from "~/interfaces/pagination.interface";
 
-const users = ref<UserInterface[]>([]);
+const articles = ref<ArticleInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -61,12 +71,12 @@ const loading = ref(true);
 
 const fetchUsers = async () => {
     try {
-        const response = await getUsers(page.value);
-        users.value = response.data;
+        const response = await getArticles(page.value);
+        articles.value = response.data;
         meta.value = response.meta;
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch users:', error);
+        console.error('Failed to fetch articles:', error);
     }
 };
 
@@ -89,11 +99,13 @@ watch(page, fetchUsers);
 </script>
 
 <style lang="scss" scoped>
-.active {
-    font-weight: bold;
-}
+@import "~/assets/scss/style.scss";
 
-.pagination {
-    width: 20vw;
+.table {
+    &__description {
+        @include paragraph-overflow-hidden(1);
+    }
+
+    // &__pagination {}
 }
 </style>
