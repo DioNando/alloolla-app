@@ -13,5 +13,10 @@
     "title": "Articles",
     "link": "/articles",
     "icon": "mdi-invoice-list"
+  },
+  {
+    "title": "Produits",
+    "link": "/products",
+    "icon": "mdi-tablet-cellphone"
   }
 ]
