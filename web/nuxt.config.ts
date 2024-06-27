@@ -20,6 +20,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: process.env.API_URL,
+      apiWooCommerceUrl: process.env.API_WOO_COMMERCE_URL,
+      apiWooCommerceKey: process.env.API_WOO_COMMERCE_KEY,
+      apiWooCommerceSecret: process.env.API_WOO_COMMERCE_SECRET,
     },
   },
   vite: {

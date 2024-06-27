@@ -38,7 +38,7 @@ const meta = ref<Meta>({
 const page = ref(1);
 const loading = ref(true);
 
-const fetchUsers = async () => {
+const fetchArticles = async () => {
     try {
         const response = await getArticles(page.value);
         articles.value = response.data;
@@ -61,9 +61,9 @@ const prevPage = () => {
     }
 };
 
-onMounted(fetchUsers);
+onMounted(fetchArticles);
 
-watch(page, fetchUsers);
+watch(page, fetchArticles);
 
 </script>
 
