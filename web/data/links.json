@@ -1,8 +1,23 @@
 [
   {
-    "title": "Accueil",
+    "title": "Tableau de bord",
     "link": "/",
-    "icon": "mdi-home"
+    "icon": "mdi-view-dashboard"
+  },
+  {
+    "title": "WooCommerce",
+    "link": "/wordpress",
+    "icon": "mdi-wordpress"
+  },
+  {
+    "title": "Produits",
+    "link": "/products",
+    "icon": "mdi-tablet-cellphone"
+  },
+  {
+    "title": "Catégories",
+    "link": "/categories",
+    "icon": "mdi-tag"
   },
   {
     "title": "Utilisateurs",
@@ -10,13 +25,13 @@
     "icon": "mdi-account-group"
   },
   {
-    "title": "Articles",
-    "link": "/articles",
-    "icon": "mdi-invoice-list"
+    "title": "Historique",
+    "link": "/history",
+    "icon": "mdi-history"
   },
   {
-    "title": "Produits",
-    "link": "/products",
-    "icon": "mdi-tablet-cellphone"
+    "title": "Paramètres",
+    "link": "/settings",
+    "icon": "mdi-cog"
   }
 ]

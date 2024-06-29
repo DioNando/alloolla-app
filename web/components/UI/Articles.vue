@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="grid-container">
-            <v-skeleton-loader class="grid-item" v-if="loading" v-for="i in 5" :key="i" type="card"></v-skeleton-loader>
+            <v-skeleton-loader class="grid-item border" v-if="loading" v-for="i in 5" :key="i" type="card, actions"></v-skeleton-loader>
             <CardArticle class="grid-item" v-else v-for="article in articles" key="article.id" :article="article" />
         </div>
     </section>

@@ -14,7 +14,7 @@
       <v-card-actions class="d-flex align-center justify-space-between">
         <v-btn variant="text" icon="mdi-chevron-up" @click="reveal = true">
         </v-btn>
-        <v-btn :to="`/articles/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+        <v-btn :to="`/products/${article.id}`" variant="text" append-icon="mdi-chevron-right"
           class="text-none">Consulter</v-btn>
       </v-card-actions>
     </div>
@@ -30,9 +30,9 @@
       </v-card-text>
 
       <v-card-actions class="d-flex align-center justify-space-between">
-        <v-btn variant="text" color="white" icon="mdi-close" @click="reveal = false" class="text-none">
+        <v-btn variant="text" icon="mdi-close" @click="reveal = false" class="text-none">
         </v-btn>
-        <v-btn :to="`/articles/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+        <v-btn :to="`/products/${article.id}`" variant="text" append-icon="mdi-chevron-right"
           class="text-none">Consulter</v-btn>
       </v-card-actions>
     </v-card>
