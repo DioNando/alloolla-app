@@ -2,28 +2,16 @@
     <div class="pa-2">
         <div class="d-flex align-center justify-space-between">
             <ButtonBack />
-            <div class="text-h4 font-weight-bold">
+            <!-- <div class="text-h4 font-weight-bold">
                 Details du produit {{ product.id }}
-            </div>
+            </div> -->
         </div>
         <v-row align="start" justify="start" class="flex-column flex-md-row mt-3">
             <v-col lg="4" md="5" sm="12">
-                <v-card variant="tonal">
-                    <v-img :src="product.image" class="ma-6"></v-img>
-                </v-card>
+                <CardProduct :product="product" />
             </v-col>
             <v-col>
-                <v-card variant="flat" class="bg-transparent">
-                    <p class="text-h4 mt-2">
-                        {{ product.title }}
-                    </p>
-                    <v-divider class="my-3" />
-                    <p class="text-h6 py-1">{{ product.category }}</p>
-                    <p class="text-body-2">{{ product.description }}</p>
-                    <p class="text-h4 font-weight-bold text-error mt-3">
-                        {{ product.price }} $
-                    </p>
-                </v-card>
+                <FormProduct :product="product" />
             </v-col>
         </v-row>
     </div>

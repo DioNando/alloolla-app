@@ -24,6 +24,11 @@ const user = authStore.user;
 </script>
 
 <style lang="scss" scoped>
+.content {
+    width: 30%;
+
+}
+
 .grid-container {
     display: grid;
     gap: 0.5rem;

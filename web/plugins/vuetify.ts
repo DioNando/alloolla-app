@@ -10,7 +10,7 @@ const myCustomLightTheme: ThemeDefinition = {
   colors: {
     background: "#ffffff",
     surface: "#ffffff",
-    primary: "#ffe66b",
+    primary: "#111111",
     secondary: "#6b95ff",
     error: "#ff4d4d",
     info: "#4da6ff",
@@ -24,7 +24,7 @@ const myCustomDarkTheme: ThemeDefinition = {
   colors: {
     background: "#1c1d23",
     surface: "#343640",
-    primary: "#ffe66b",
+    primary: "#f1f1f1",
     secondary: "#6b95ff",
     error: "#ff4d4d",
     info: "#4da6ff",

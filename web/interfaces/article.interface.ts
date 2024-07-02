@@ -1,5 +1,5 @@
-import { type UserInterface } from "./user.interface";
-import { type Meta, type Links } from "./pagination.interface";
+import type { UserInterface } from "./user.interface";
+import type { Meta, Links } from "./pagination.interface";
 
 export interface ArticleInterface {
   id: number;

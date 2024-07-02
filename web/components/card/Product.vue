@@ -2,37 +2,37 @@
   <v-card variant="tonal" class="bg-white card">
     <div class="pa-2">
       <div class="d-flex justify-center">
-        <v-img height="200" width="300" :src="product.image" class="ma-4"></v-img>
+        <v-img height="200" width="300" :src="fakeProduct.image" class="ma-4"></v-img>
       </div>
       <v-card-item>
-        <v-card-title>{{ product.title }}</v-card-title>
+        <v-card-title>{{ fakeProduct.title }}</v-card-title>
 
         <v-card-subtitle>
-          <span class="me-1">{{ product.category }}</span>
+          <span class="me-1">{{ fakeProduct.category }}</span>
         </v-card-subtitle>
       </v-card-item>
       <v-card-actions class="d-flex align-center justify-space-between">
         <v-btn variant="text" icon="mdi-chevron-up" @click="reveal = true">
         </v-btn>
-        <v-btn :to="`/products/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+        <v-btn :to="`/products/${product.id}`" variant="text" append-icon="mdi-chevron-right"
           class="text-none">Consulter</v-btn>
       </v-card-actions>
     </div>
     <!-- <v-expand-transition> -->
     <v-card v-if="reveal" class="pa-2 d-flex flex-column justify-space-between v-card--reveal">
       <v-card-text class="pb-0">
-        <p class="text-h6 text--primary">{{ product.title }}</p>
-        <p class="text-subtitle text--primary">{{ product.category }}</p>
+        <p class="text-h6 text--primary">{{ fakeProduct.title }}</p>
+        <p class="text-subtitle text--primary">{{ fakeProduct.category }}</p>
         <v-divider class="my-2"></v-divider>
         <p class="lines">
-          {{ product.description }}
+          {{ fakeProduct.description }}
         </p>
       </v-card-text>
 
       <v-card-actions class="d-flex align-center justify-space-between">
         <v-btn variant="text" icon="mdi-close" @click="reveal = false" class="text-none">
         </v-btn>
-        <v-btn :to="`/products/${article.id}`" variant="text" append-icon="mdi-chevron-right"
+        <v-btn :to="`/products/${product.id}`" variant="text" append-icon="mdi-chevron-right"
           class="text-none">Consulter</v-btn>
       </v-card-actions>
     </v-card>
@@ -41,15 +41,15 @@
 </template>
 
 <script setup lang="ts">
-import { type ArticleInterface } from "~/interfaces/article.interface";
+import { type ProductInterface } from "~/interfaces/product.interface";
 
 const props = defineProps<{
-  article: ArticleInterface
+  product: ProductInterface
 }>()
 
 const reveal = ref(false);
 
-const { data: product } = await useFetch<any>(`https://fakestoreapi.com/products/${props.article.id}`);
+const { data: fakeProduct } = await useFetch<any>(`https://fakestoreapi.com/products/${props.product.id}`);
 </script>
 
 <style lang="scss" scoped>

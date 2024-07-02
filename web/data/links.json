@@ -28,10 +28,5 @@
     "title": "Historique",
     "link": "/history",
     "icon": "mdi-history"
-  },
-  {
-    "title": "Paramètres",
-    "link": "/settings",
-    "icon": "mdi-cog"
   }
 ]

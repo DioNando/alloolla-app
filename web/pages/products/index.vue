@@ -1,30 +1,27 @@
 <template>
     <section class="pa-2">
-        <v-tabs v-model="tab" align-tabs="left" color="primary">
-            <v-tab :value="1">Affiche</v-tab>
-            <v-tab :value="2">Liste</v-tab>
+        <TextTitle :title="'Produits'" />
+        <v-tabs v-model="tab" align-tabs="left" color="primary" class="mb-3">
+            <v-tab append-icon="mdi-view-dashboard" :value="1">Affiche</v-tab>
+            <v-tab append-icon="mdi-format-list-numbered" :value="2">Liste</v-tab>
         </v-tabs>
 
         <v-tabs-window v-model="tab">
             <v-tabs-window-item :value="1">
 
 
-                <UIArticles />
+                <UIProducts />
 
             </v-tabs-window-item>
             <v-tabs-window-item :value="2">
 
 
-                <TableArticle />
+                <TableProduct />
 
             </v-tabs-window-item>
         </v-tabs-window>
     </section>
 </template>
-<script>
-export default {
-    data: () => ({
-        tab: null,
-    }),
-}
+<script setup lang="ts">
+const tab = ref(null)
 </script>

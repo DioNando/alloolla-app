@@ -12,18 +12,18 @@
         </div>
         <div class="grid-container">
             <v-skeleton-loader class="grid-item border" v-if="loading" v-for="i in 5" :key="i" type="card, actions"></v-skeleton-loader>
-            <CardArticle class="grid-item" v-else v-for="article in articles" key="article.id" :article="article" />
+            <CardProduct class="grid-item" v-else v-for="product in products" key="product.id" :product="product" />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { getArticles } from '@/api/articleApi'
+import { getProducts } from '@/api/productApi'
 
-import { type ArticleInterface } from "~/interfaces/article.interface";
+import { type ProductInterface } from "~/interfaces/product.interface";
 import { type Meta } from "~/interfaces/pagination.interface";
 
-const articles = ref<ArticleInterface[]>([]);
+const products = ref<ProductInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -38,32 +38,34 @@ const meta = ref<Meta>({
 const page = ref(1);
 const loading = ref(true);
 
-const fetchArticles = async () => {
+const fetchProducts = async () => {
     try {
-        const response = await getArticles(page.value);
-        articles.value = response.data;
+        const response = await getProducts(page.value);
+        products.value = response.data;
         meta.value = response.meta;
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch articles:', error);
+        console.error('Failed to fetch products:', error);
     }
 };
 
 const nextPage = () => {
     if (page.value < meta.value.last_page) {
+        loading.value = true;
         page.value++;
     }
 };
 
 const prevPage = () => {
     if (page.value > 1) {
+        loading.value = true;
         page.value--;
     }
 };
 
-onMounted(fetchArticles);
+onMounted(fetchProducts);
 
-watch(page, fetchArticles);
+watch(page, fetchProducts);
 
 </script>
 

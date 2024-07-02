@@ -24,9 +24,13 @@
             </tbody>
         </v-table>
 
-        <div class="mt-2">
-            <v-pagination v-model="page" :length="meta.last_page" rounded="circle"></v-pagination>
-        </div>
+        <v-row justify="center">
+            <v-col cols="10">
+                <v-container class="max-width">
+                    <v-pagination v-model="page" rounded :length="meta.last_page"></v-pagination>
+                </v-container>
+            </v-col>
+        </v-row>
         <!-- <div>
             <div class="pagination">
                 <v-btn @click="prevPage" :disabled="page <= 1">Previous</v-btn>

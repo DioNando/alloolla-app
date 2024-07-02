@@ -30,9 +30,9 @@ services:
     container_name: alloolla_web
     ports:
       - "3000:3000"
-    # volumes:
-    #   - ./web:/app
-    #   - /app/node_modules
+    volumes:
+      - ./web:/app
+      - /app/node_modules
     depends_on:
       - api
     environment:
@@ -57,6 +57,7 @@ services:
       - api
     volumes:
       - wordpress_data:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/php.ini
     networks:
       - alloolla-network
 

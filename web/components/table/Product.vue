@@ -14,29 +14,33 @@
                         Description
                     </th>
                     <th class="text-left">
-                        Quantité
+                        Prix
                     </th>
                     <th class="text-left">
-                        Statut
+                        Utilisateur
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="article in articles" :key="article.id">
-                    <td>{{ article.id }}</td>
-                    <td>{{ article.name }}</td>
+                <tr v-for="product in products" :key="product.id">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
                     <td>
-                        <p class="table__description">{{ article.description }}</p>
+                        <p class="table__description">{{ product.description }}</p>
                     </td>
-                    <td>{{ article.amount }}</td>
-                    <td>{{ article.status }}</td>
+                    <td>{{ product.regular_price }}</td>
+                    <td>{{ product.user.name }}</td>
                 </tr>
             </tbody>
         </v-table>
 
-        <div class="table__pagination mt-2">
-            <v-pagination v-model="page" :length="meta.last_page" rounded="circle"></v-pagination>
-        </div>
+        <v-row justify="center">
+            <v-col cols="10">
+                <v-container class="max-width">
+                    <v-pagination v-model="page" rounded :length="meta.last_page"></v-pagination>
+                </v-container>
+            </v-col>
+        </v-row>
         <!-- <div>
             <div class="pagination">
                 <v-btn @click="prevPage" :disabled="page <= 1">Previous</v-btn>
@@ -49,12 +53,12 @@
 </template>
 
 <script setup lang="ts">
-import { getArticles } from '@/api/articleApi'
+import { getProducts } from '@/api/productApi'
 
-import { type ArticleInterface } from "~/interfaces/article.interface";
+import { type ProductInterface } from "~/interfaces/product.interface";
 import { type Meta } from "~/interfaces/pagination.interface";
 
-const articles = ref<ArticleInterface[]>([]);
+const products = ref<ProductInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -71,12 +75,12 @@ const loading = ref(true);
 
 const fetchUsers = async () => {
     try {
-        const response = await getArticles(page.value);
-        articles.value = response.data;
+        const response = await getProducts(page.value);
+        products.value = response.data;
         meta.value = response.meta;
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch articles:', error);
+        console.error('Failed to fetch products:', error);
     }
 };
 
