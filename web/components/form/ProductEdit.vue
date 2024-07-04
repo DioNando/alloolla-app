@@ -1,8 +1,8 @@
 <template>
     <v-row justify="center" class="mb-12">
-        <v-col cols="12" md="5">
+        <v-col cols="12">
             <div>
-                <v-card append-icon="mdi-archive" class="mx-auto" title="Ajouter un nouveau produit" variant="tonal"
+                <v-card append-icon="mdi-archive" class="mx-auto" title="Mettre à jour un produit" variant="tonal"
                     color="primary">
                 </v-card>
             </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="table">
+    <div>
         <v-skeleton-loader v-if="loading" class="border" type="table"></v-skeleton-loader>
         <v-table class="border" v-else fixed-header>
             <thead>
@@ -14,27 +14,20 @@
                         Description
                     </th>
                     <th class="text-left">
-                        Prix
+                        Slug
                     </th>
                     <th class="text-left">
-                        Utilisateur
-                    </th>
-                    <th class="text-center">
-                        Actions
+                        Total
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="product in products" :key="product.id">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>
-                        <p class="table__description">{{ product.description }}</p>
-                    </td>
-                    <td>{{ product.regular_price }}</td>
-                    <td>{{ product.user.name }}</td>
-                    <td><v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
-                            class="text-none"></v-btn></td>
+                <tr v-for="user in users" :key="user.id">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>20</td>
                 </tr>
             </tbody>
         </v-table>
@@ -58,12 +51,12 @@
 </template>
 
 <script setup lang="ts">
-import { getProducts } from '@/api/productApi'
+import { getUsers } from '@/api/userApi'
 
-import { type ProductInterface } from "~/interfaces/product.interface";
+import { type UserInterface } from "~/interfaces/user.interface";
 import { type Meta } from "~/interfaces/pagination.interface";
 
-const products = ref<ProductInterface[]>([]);
+const users = ref<UserInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -80,12 +73,12 @@ const loading = ref(true);
 
 const fetchUsers = async () => {
     try {
-        const response = await getProducts(page.value);
-        products.value = response.data;
+        const response = await getUsers(page.value);
+        users.value = response.data;
         meta.value = response.meta;
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch products:', error);
+        console.error('Failed to fetch users:', error);
     }
 };
 
@@ -108,13 +101,11 @@ watch(page, fetchUsers);
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/style.scss";
+.active {
+    font-weight: bold;
+}
 
-.table {
-    &__description {
-        @include paragraph-overflow-hidden(1);
-    }
-
-    // &__pagination {}
+.pagination {
+    width: 20vw;
 }
 </style>

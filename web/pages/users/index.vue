@@ -4,7 +4,15 @@
         <div>
             <!-- FIXME: null is not assignable -->
             <CardUser :user="user" class="mb-2" />
-            <TableUser />
+            <v-row>
+                <v-col cols="12" md="8">
+                    <TableUser />
+                </v-col>
+                <v-col cols="12" md="4">
+                    <FormUser />
+                    <CardHistory />
+                </v-col>
+            </v-row>
         </div>
     </section>
 </template>

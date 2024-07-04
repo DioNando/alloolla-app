@@ -13,6 +13,9 @@
                     <th class="text-left">
                         Email
                     </th>
+                    <th class="text-left">
+                        Actions
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +23,8 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
+                    <td><v-btn :to="`/users/${user.id}`" variant="text" color="primary" icon="mdi-chevron-right"
+                        class="text-none"></v-btn></td>
                 </tr>
             </tbody>
         </v-table>

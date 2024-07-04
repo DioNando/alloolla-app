@@ -18,25 +18,23 @@
 </template>
 
 <script setup lang="ts">
-import { type ArticleInterface } from "~/interfaces/article.interface"
+import { type ProductInterface } from "~/interfaces/product.interface"
 
 const props = defineProps<{
     product: any
 }>()
 
-const article = ref<ArticleInterface>({
-    id: 0,
-    amount: 0,
-    description: "0",
-    name: "0",
-    status: '',
-    userId: 0,
-    user: {
-        id: 0,
-        name: "0",
-        email: "0"
-    }
-});
+// const product = ref<ProductInterface>({
+//     id: 0,
+//     name: "0",
+//     regular_price: 0,
+//     description: "...",
+//     user: {
+//         id: 0,
+//         name: "0",
+//         email: "0"
+//     }
+// });
 
 </script>
 

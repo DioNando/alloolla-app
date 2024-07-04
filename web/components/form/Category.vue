@@ -1,13 +1,13 @@
 <template>
-    <v-row justify="center" class="mb-12">
-        <v-col cols="12" md="5">
-            <div>
-                <v-card append-icon="mdi-archive" class="mx-auto" title="Ajouter un nouveau produit" variant="tonal"
+    <v-row justify="center">
+        <v-col cols="12">
+            <div class="mb-5">
+                <v-card append-icon="mdi-tag" class="mx-auto" title="Ajouter une nouvelle catégorie" variant="tonal"
                     color="primary">
                 </v-card>
             </div>
             <v-form>
-                <div class="text-h5 text-bold my-5">Renseignements de base</div>
+                <!-- <div class="text-h5 text-bold my-5">Renseignements de base</div> -->
                 <v-row>
                     <v-col cols="12">
                         <v-text-field v-model="user.firstname" :counter="10" :rules="user.nameRules" label="Nom"
@@ -15,20 +15,16 @@
                     </v-col>
 
                     <v-col cols="12">
-                        <v-text-field v-model="user.lastname" :counter="10" :rules="user.nameRules" label="Tarif régulier"
+                        <v-text-field v-model="user.lastname" :counter="10" :rules="user.nameRules" label="Slug"
                             hide-details required variant="outlined"></v-text-field>
                     </v-col>
 
                     <v-col cols="12">
-                        <v-text-field v-model="user.email" :rules="user.emailRules" label="Résumé" hide-details required
-                            variant="outlined"></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
                         <v-textarea label="Description" variant="outlined"></v-textarea>
                     </v-col>
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                         <v-file-input prepend-icon="mdi-image" label="Images" variant="outlined"></v-file-input>
-                    </v-col>
+                    </v-col> -->
                     <v-col>
                         <div class="d-flex flex-column flex-lg-row justify-end ga-3">
                             <v-btn class="" variant="flat"click="validate">
@@ -39,7 +35,7 @@
                                 Publier
                             </v-btn>
 
-                            <v-btn class="" color="primary" @click="resetValidation" append-icon="mdi-archive">
+                            <v-btn class="" color="primary" @click="resetValidation" append-icon="mdi-tag">
                                 Ajouter
                             </v-btn>
                         </div>
