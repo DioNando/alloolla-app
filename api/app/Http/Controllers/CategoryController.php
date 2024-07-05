@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
@@ -31,7 +32,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        return new CategoryResource(Category::create($request->all()));
+        $category = Category::create($request->all());
+        Helper::interactionCategory($category->id, $request->input('user_id'), 'Ajout', 'grey', 'tag', 'Création');
+        return new CategoryResource($category);
     }
 
     /**
@@ -55,6 +58,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         if($category->update($request->all())) {
+            Helper::interactionCategory($category->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
             return new CategoryResource($category);
         }
     }

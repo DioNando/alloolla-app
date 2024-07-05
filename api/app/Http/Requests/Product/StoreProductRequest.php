@@ -28,7 +28,6 @@ class StoreProductRequest extends FormRequest
             'regular_price' => ['required', 'integer'],
             'description' => ['required', 'string'],
             'user_id' => ['required'],
-
         ];
     }
 }

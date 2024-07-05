@@ -7,6 +7,7 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Helper\Helper;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        return new ProductResource(Product::create($request->all()));
+        $product = Product::create($request->all());
+        Helper::interactionProduct($product->id, $request->input('user_id'), 'Ajout', 'grey', 'archive', 'Création');
+        return new ProductResource($product);
     }
 
     /**
@@ -54,7 +57,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        if($product->update($request->all())) {
+        if ($product->update($request->all())) {
+            Helper::interactionProduct($product->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
             return new ProductResource($product);
         }
     }
@@ -67,9 +71,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $data = Product::findOrFail($id);
-        if ($data->delete()) {
-            return new ProductResource($data);
+        $product = Product::findOrFail($id);
+        if ($product->delete()) {
+            // Helper::interactionProduct($product->id, 4, 'Suppression', 'orange', 'archive');
+            return new ProductResource($product);
         };
     }
 }

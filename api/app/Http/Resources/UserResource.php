@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'articles' => ArticleResource::collection($this->whenLoaded('articles'))
+            'products' => ArticleResource::collection($this->whenLoaded('products'))
         ];
     }
 }

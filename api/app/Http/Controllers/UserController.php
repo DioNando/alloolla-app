@@ -21,12 +21,12 @@ class UserController extends Controller
         $filter = new UsersFilter();
         $filterItems = $filter->transform($request); // [['column', 'operator', 'value']]
 
-        $includeArticles = $request->query('includeArticles');
+        $includeProducts = $request->query('includeProducts');
 
         $users = user::where($filterItems);
 
-        if ($includeArticles) {
-            $users = $users->with('articles');
+        if ($includeProducts) {
+            $users = $users->with('products');
         }
 
         return new UserCollection($users->paginate()->appends($request->query()));
@@ -69,7 +69,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -82,6 +82,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        if ($data->delete()) {
+            return new UserResource($data);
+        };
     }
 }
