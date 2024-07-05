@@ -1,13 +1,13 @@
 // TODO: change article to category  
 
-import { type ArticlesPaginate } from "~/interfaces/article.interface";
+import { type CategoriesPaginate } from "~/interfaces/category.interface";
 
-export const getArticles = async (page: number = 1): Promise<ArticlesPaginate> => {
+export const getCategories = async (page: number = 1): Promise<CategoriesPaginate> => {
   try {
     const config = useRuntimeConfig();
     const token = useCookie("token");
 
-    const response = await $fetch<ArticlesPaginate>(`${config.public.apiUrl}/articles?page=${page}`, {
+    const response = await $fetch<CategoriesPaginate>(`${config.public.apiUrl}/categories?page=${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const getArticles = async (page: number = 1): Promise<ArticlesPaginate> =
       },
     });
 
-    return response as ArticlesPaginate;
+    return response as CategoriesPaginate;
   } catch (err) {
     console.error("Erreur lors de la requête.", err);
     throw err;

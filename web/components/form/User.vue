@@ -10,25 +10,26 @@
                 <v-form>
                     <v-row>
                         <v-col cols="12">
-                            <v-text-field v-model="user.firstname" :counter="10" :rules="user.nameRules" label="Nom"
-                                hide-details required variant="outlined"></v-text-field>
+                            <v-text-field v-model="props.user.id" label="ID" variant="outlined" disabled
+                                hide-details></v-text-field>
                         </v-col>
 
                         <v-col cols="12">
-                            <v-text-field v-model="user.lastname" :counter="10" :rules="user.nameRules"
-                                label="Tarif régulier" hide-details required variant="outlined"></v-text-field>
+                            <v-text-field v-model="props.user.name" label="Nom" variant="outlined"
+                                hide-details></v-text-field>
                         </v-col>
 
                         <v-col cols="12">
-                            <v-text-field v-model="user.email" :rules="user.emailRules" label="Résumé" hide-details
-                                required variant="outlined"></v-text-field>
+                            <v-text-field v-model="props.user.email" label="Email" variant="outlined"
+                                hide-details></v-text-field>
                         </v-col>
-                        <v-col>
+                        <v-col v-if="props.user.id != 0 && !loading">
                             <div class="d-flex flex-column flex-lg-row justify-end ga-3">
                                 <!-- <v-btn class="" variant="flat" click="validate">
                                     Effacer
                                 </v-btn> -->
-                                <v-btn class="" color="primary" @click="resetValidation" append-icon="mdi-pencil">
+                                <v-btn :to="`/users/${props.user.id}`" class="" color="primary"
+                                    append-icon="mdi-pencil">
                                     Modifier
                                 </v-btn>
                             </div>
@@ -41,40 +42,12 @@
 </template>
 
 <script setup lang="ts">
+import type { UserInterface } from "@/interfaces/user.interface"
+
 const props = defineProps<{
-    product: any
+    user: UserInterface,
+    loading: boolean
 }>()
-
-const user = ref<any>({
-    valid: false,
-    firstname: '',
-    lastname: '',
-    nameRules: [
-        value => {
-            if (value) return true
-
-            return 'Name is required.'
-        },
-        value => {
-            if (value?.length <= 10) return true
-
-            return 'Name must be less than 10 characters.'
-        },
-    ],
-    email: '',
-    emailRules: [
-        value => {
-            if (value) return true
-
-            return 'E-mail is requred.'
-        },
-        value => {
-            if (/.+@.+\..+/.test(value)) return true
-
-            return 'E-mail must be valid.'
-        },
-    ],
-});
 </script>
 
 <style lang="scss" scoped>

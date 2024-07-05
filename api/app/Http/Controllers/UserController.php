@@ -51,15 +51,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $includeArticles = request()->query('includeArticles');
+        $includeProducts = request()->query('includeProducts');
 
         $data = User::findOrFail($id);
 
-        if ($includeArticles) {
-            return new UserResource($data->loadMissing('articles'));
+        if ($includeProducts) {
+            return new UserResource($data->loadMissing('products'));
         }
 
-        return new UserResource($data);
+        return new UserResource($data->loadMissing('interactions'));
+        // return new UserResource($data);
     }
 
     /**

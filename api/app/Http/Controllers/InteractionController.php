@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InteractionResource;
 use App\Models\Interaction;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class InteractionController extends Controller
      */
     public function index()
     {
-        //
+        $data = Interaction::orderBy('id', 'desc')->get();
+        return InteractionResource::collection(($data));
+        // return InteractionResource::collection(Interaction::paginate(15)->get());
+        // return InteractionResource::collection(Interaction::get()->paginate(20));
     }
 
     /**

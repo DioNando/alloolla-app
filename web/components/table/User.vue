@@ -23,8 +23,10 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td><v-btn :to="`/users/${user.id}`" variant="text" color="primary" icon="mdi-chevron-right"
+                    <td><v-btn @click="$emit('user-emit', user.id)" variant="text" color="primary" icon="mdi-chevron-right"
                         class="text-none"></v-btn></td>
+                    <!-- <td><v-btn :to="`/users/${user.id}`" variant="text" color="primary" icon="mdi-chevron-right"
+                        class="text-none"></v-btn></td> -->
                 </tr>
             </tbody>
         </v-table>
@@ -90,6 +92,10 @@ const prevPage = () => {
         page.value--;
     }
 };
+
+// const sendData = () => {
+//     $emit('data-sent', 'Voici les données à envoyer');
+// }
 
 onMounted(fetchUsers);
 

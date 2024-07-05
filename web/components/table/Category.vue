@@ -11,23 +11,15 @@
                         Nom
                     </th>
                     <th class="text-left">
-                        Description
-                    </th>
-                    <th class="text-left">
-                        Slug
-                    </th>
-                    <th class="text-left">
-                        Total
+                        Utilisateur
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user in users" :key="user.id">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>20</td>
+                <tr v-for="category in categories" :key="category.id">
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.user.name }}</td>
                 </tr>
             </tbody>
         </v-table>
@@ -51,12 +43,12 @@
 </template>
 
 <script setup lang="ts">
-import { getUsers } from '@/api/userApi'
+import { getCategories } from '@/api/categoryApi'
 
-import { type UserInterface } from "~/interfaces/user.interface";
+import { type CategoryInterface } from "~/interfaces/category.interface";
 import { type Meta } from "~/interfaces/pagination.interface";
 
-const users = ref<UserInterface[]>([]);
+const categories = ref<CategoryInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -71,14 +63,14 @@ const meta = ref<Meta>({
 const page = ref(1);
 const loading = ref(true);
 
-const fetchUsers = async () => {
+const fetchCategories = async () => {
     try {
-        const response = await getUsers(page.value);
-        users.value = response.data;
+        const response = await getCategories(page.value);
+        categories.value = response.data;
         meta.value = response.meta;
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch users:', error);
+        console.error('Failed to fetch categories:', error);
     }
 };
 
@@ -94,9 +86,9 @@ const prevPage = () => {
     }
 };
 
-onMounted(fetchUsers);
+onMounted(fetchCategories);
 
-watch(page, fetchUsers);
+watch(page, fetchCategories);
 
 </script>
 

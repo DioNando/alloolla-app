@@ -14,19 +14,19 @@ class InteractionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-        // return [
-        //     'id' => $this->id,
-        //     'client' => $this->client,
-        //     'type' => $this->type,
-        //     'color' => $this->color,
-        //     'icon' => $this->icon,
-        //     'user' => $this->user,
-        //     'description' => $this->description,
-        //     'created_at' => date_format($this->created_at, "l, d F Y"),
-        //     // setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']),
-        //     // 'created_at' => strftime('%A, %d %B %Y'),
-        //     'time' => date_format($this->created_at, "H:i"),
-        // ];
+        // return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'product' => new ProductResource($this->product),
+            'type' => $this->type,
+            'color' => $this->color,
+            'icon' => $this->icon,
+            'user' => new UserResource($this->user),
+            'description' => $this->description,
+            'created_at' => date_format($this->created_at, "l, d F Y"),
+            // setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']),
+            // 'created_at' => strftime('%A, %d %B %Y'),
+            'time' => date_format($this->created_at, "H:i"),
+        ];
     }
 }

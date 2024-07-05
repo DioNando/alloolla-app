@@ -24,10 +24,10 @@
                             variant="outlined"></v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-textarea label="Description" variant="outlined"></v-textarea>
+                        <v-textarea label="Description" variant="outlined" hide-details></v-textarea>
                     </v-col>
                     <v-col cols="12">
-                        <v-file-input prepend-icon="mdi-image" label="Images" variant="outlined"></v-file-input>
+                        <v-file-input prepend-icon="mdi-image" label="Images" variant="outlined" hide-details></v-file-input>
                     </v-col>
                     <v-col>
                         <div class="d-flex flex-column flex-lg-row justify-end ga-3">

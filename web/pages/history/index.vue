@@ -1,6 +1,6 @@
 <template>
     <section class="pa-2">
-        <TextTitle :title="'Historiques des produits'" />
+        <TextTitle :title="'Historique'" />
         <div>
             <TableHistory />
         </div>
