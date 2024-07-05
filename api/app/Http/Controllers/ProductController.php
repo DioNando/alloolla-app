@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -19,7 +21,6 @@ class ProductController extends Controller
         // return ProductResource::collection($data);
 
         return ProductResource::collection(Product::with('user')->paginate(10));
-
     }
 
     /**
@@ -28,9 +29,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        return new ProductResource(Product::create($request->all()));
     }
 
     /**
@@ -51,9 +52,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        if($product->update($request->all())) {
+            return new ProductResource($product);
+        }
     }
 
     /**
@@ -64,6 +67,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Product::findOrFail($id);
+        if ($data->delete()) {
+            return new ProductResource($data);
+        };
     }
 }
