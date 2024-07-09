@@ -1,6 +1,6 @@
 <template>
     <section>
-        <FormProductAdd />
+        <FormUserAdd />
     </section>
 </template>
 

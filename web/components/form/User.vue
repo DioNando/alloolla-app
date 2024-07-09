@@ -1,7 +1,7 @@
 <template>
     <v-row justify="center" class="mb-3">
         <v-col cols="12">
-            <div>
+            <div class="mb-1">
                 <v-card append-icon="mdi-account" class="mx-auto" title="Informations sur l'utilisateur" variant="tonal"
                     color="primary">
                 </v-card>
@@ -29,8 +29,8 @@
                                     Effacer
                                 </v-btn> -->
                                 <v-btn :to="`/users/${props.user.id}`" class="" color="primary"
-                                    append-icon="mdi-pencil">
-                                    Modifier
+                                    append-icon="mdi-chevron-right">
+                                    Consulter
                                 </v-btn>
                             </div>
                         </v-col>

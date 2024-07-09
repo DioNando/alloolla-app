@@ -18,8 +18,9 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'products' => ArticleResource::collection($this->whenLoaded('products')),
-            'interactions' => InteractionResource::collection($this->whenLoaded('interactions'))
+            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'interactions' => InteractionResource::collection($this->whenLoaded('interactions')),
+            'audit_logs' => AuditLogResource::collection($this->whenLoaded('audit_logs'))
         ];
     }
 }

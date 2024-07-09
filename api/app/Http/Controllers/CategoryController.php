@@ -33,7 +33,8 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $category = Category::create($request->all());
-        Helper::interactionCategory($category->id, $request->input('user_id'), 'Ajout', 'grey', 'tag', 'Création');
+        // Helper::interactionCategory($category->id, $request->input('user_id'), 'Ajout', 'grey', 'tag', 'Création');
+        // TODO: add audit_log
         return new CategoryResource($category);
     }
 
@@ -58,7 +59,8 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         if($category->update($request->all())) {
-            Helper::interactionCategory($category->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
+            // Helper::interactionCategory($category->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
+            // TODO: add audit_log
             return new CategoryResource($category);
         }
     }
@@ -73,6 +75,7 @@ class CategoryController extends Controller
     {
         $data = Category::findOrFail($id);
         if ($data->delete()) {
+            // TODO: add audit_log
             return new CategoryResource($data);
         };
     }

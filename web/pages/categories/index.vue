@@ -5,7 +5,7 @@
         </div>
         <v-row>
             <v-col cols="12" md="4">
-                <FormCategory />
+                <FormCategoryAdd />
             </v-col>
             <v-col cols="12" md="8">
                 <TableCategory />

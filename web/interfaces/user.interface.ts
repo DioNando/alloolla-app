@@ -1,9 +1,10 @@
 import { type Meta, type Links } from "./pagination.interface";
 
 export interface UserInterface {
-  id: number;
+  id?: number;
   name: string;
   email: string;
+  password?: string;
 }
 
 export interface UserWithTokenInterface {

@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(10)
-            ->hasArticles(15)
             ->hasProducts(15)
             ->hasCategories(10)
             ->create();

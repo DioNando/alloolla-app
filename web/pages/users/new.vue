@@ -6,7 +6,7 @@
                 Ajouter un nouvel utilisateur
             </div>
         </div>
-        <UIAddProduct />
+        <UIAddUser />
     </div>
 </template>
 

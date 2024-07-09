@@ -4,11 +4,11 @@
         <v-table class="border" v-else fixed-header>
             <thead>
                 <tr>
-                    <th class="text-left">
-                        ID
-                    </th>
                     <th class="text-center">
                         Icone
+                    </th>
+                    <th class="text-left">
+                        Type
                     </th>
                     <th class="text-left">
                         Description
@@ -17,32 +17,31 @@
                         Date
                     </th>
                     <th class="text-left">
-                        Heure
-                    </th>
-                    <th class="text-left">
                         Par
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="interaction in interactions" :key="interaction.id">
-                    <td>{{ interaction.id }}</td>
-                    <td class="text-center"><v-icon :icon="`mdi-` + interaction.icon" :color="interaction.color"></v-icon></td>
-                    <td>{{ interaction.type }}</td>
-                    <td>{{ interaction.created_at }}</td>
-                    <td>{{ interaction.time }}</td>
-                    <td>{{ interaction.user.name }}</td>
+                <tr v-for="i in auditLogs" :key="i.id">
+                    <td class="text-center"><v-icon :icon="`mdi-` + i.icon" :color="i.color"></v-icon></td>
+                    <td>{{ i.entity_type }}</td>
+                    <td>{{ i.details }}</td>
+                    <td>
+                        <p>{{ i.date }}</p>
+                        <p>{{ i.time }}</p>
+                    </td>
+                    <td>{{ i.user.name }}</td>
                 </tr>
             </tbody>
         </v-table>
 
-        <!-- <v-row justify="center">
+        <v-row justify="center">
             <v-col cols="10">
                 <v-container class="max-width">
                     <v-pagination v-model="page" rounded :length="meta.last_page"></v-pagination>
                 </v-container>
             </v-col>
-        </v-row> -->
+        </v-row>
         <!-- <div>
             <div class="pagination">
                 <v-btn @click="prevPage" :disabled="page <= 1">Previous</v-btn>
@@ -55,11 +54,12 @@
 </template>
 
 <script setup lang="ts">
-import { getInteractions } from '@/api/interactionApi'
+import { getAuditLogs } from '@/api/auditLogApi'
 
-import { type Meta } from "~/interfaces/pagination.interface";
+import type { Meta } from "~/interfaces/pagination.interface";
+import type { AuditLogInterface } from "~/interfaces/auditLog.interface";
 
-const interactions = ref<any[]>([]);
+const auditLogs = ref<AuditLogInterface[]>([]);
 const meta = ref<Meta>({
     current_page: 0,
     from: 0,
@@ -74,12 +74,11 @@ const meta = ref<Meta>({
 const page = ref(1);
 const loading = ref(true);
 
-const fetchInteractions = async () => {
+const fetchAuditLogs = async () => {
     try {
-        // const response = await getInteractions(page.value);
-        const response = await getInteractions();
-        interactions.value = response.data;
-        // meta.value = response.meta;
+        const response = await getAuditLogs(page.value);
+        auditLogs.value = response.data;
+        meta.value = response.meta;
         loading.value = false;
     } catch (error) {
         console.error('Failed to fetch users:', error);
@@ -98,9 +97,9 @@ const prevPage = () => {
     }
 };
 
-onMounted(fetchInteractions);
+onMounted(fetchAuditLogs);
 
-watch(page, fetchInteractions);
+watch(page, fetchAuditLogs);
 
 </script>
 

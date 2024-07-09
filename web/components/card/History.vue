@@ -1,18 +1,18 @@
 <template>
-    <v-card variant="tonal" append-icon="mdi-history" class="pa-4" title="Historique">
-        <v-skeleton-loader v-if="props.loading" type="list-item"></v-skeleton-loader>
+    <v-card variant="tonal" append-icon="mdi-history" title="Historique">
+        <v-skeleton-loader v-if="props.loading" type="list-item" class="ma-3 mt-0"></v-skeleton-loader>
         <v-timeline v-else density="comfortable" truncate-line="both" side="end">
-            <v-timeline-item v-for="i in props.interactions" key="i.id" :dot-color="i.color" size="small">
+            <v-timeline-item v-for="i in props.auditLogs" key="i.id" :dot-color="i.color" size="small">
                 <div class="d-flex">
                     <div class="d-flex flex-column">
-                        <strong>{{ i.created_at }}</strong>
+                        <strong>{{ i.date }}</strong>
                         <span>{{ i.time }}</span>
                     </div>
                     <div>
                         <div class="d-flex align-center ga-1"><v-icon :icon="`mdi-` + i.icon"
-                                size="small"></v-icon><strong>{{ i.type }}</strong></div>
+                                size="small"></v-icon><strong>{{ i.action }}</strong></div>
                         <div class="text-caption">
-                            {{ i.product.name }}
+                            {{ i.details }}
                         </div>
                     </div>
                 </div>
@@ -23,9 +23,10 @@
 </template>
 
 <script setup lang="ts">
+import type { AuditLogInterface } from "~/interfaces/auditLog.interface";
 
 const props = defineProps<{
-    interactions: any,
+    auditLogs: AuditLogInterface[],
     loading: boolean
 }>()
 </script>

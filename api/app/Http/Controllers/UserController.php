@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Filters\UsersFilter;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
@@ -38,9 +40,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $user = User::create($request->all());
+        // TODO: add audit_log
+        return new UserResource($user);
     }
 
     /**
@@ -59,7 +63,8 @@ class UserController extends Controller
             return new UserResource($data->loadMissing('products'));
         }
 
-        return new UserResource($data->loadMissing('interactions'));
+        return new UserResource($data->loadMissing('audit_logs'));
+        // return new UserResource($data->loadMissing('interactions')->loadMissing('audit_logs'));
         // return new UserResource($data);
     }
 
@@ -70,9 +75,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        if ($user->update($request->all())) {
+            // TODO: add audit_log
+            return new UserResource($user);
+        }
     }
 
     /**
@@ -85,6 +93,7 @@ class UserController extends Controller
     {
         $data = User::findOrFail($id);
         if ($data->delete()) {
+            // TODO: add audit_log
             return new UserResource($data);
         };
     }

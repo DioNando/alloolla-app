@@ -8,6 +8,8 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
+use App\Models\AuditLog;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -33,7 +35,17 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->all());
-        Helper::interactionProduct($product->id, $request->input('user_id'), 'Ajout', 'grey', 'archive', 'Création');
+        // TODO: update audit_log
+        AuditLog::create([
+            'user_id' => Auth::id(),
+            'action' => 'created',
+            'entity_type' => 'Product',
+            'entity_id' => $product->id,
+            'icon' => 'archive',
+            'color' => 'success',
+            'details' => 'Created a new product with name: ' . $product->name,
+        ]);
+
         return new ProductResource($product);
     }
 
@@ -58,7 +70,16 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         if ($product->update($request->all())) {
-            Helper::interactionProduct($product->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
+            // TODO: update audit_log
+            AuditLog::create([
+                'user_id' => Auth::id(),
+                'action' => 'updated',
+                'entity_type' => 'Product',
+                'entity_id' => $product->id,
+                'icon' => 'pencil',
+                'color' => 'info',
+                'details' => 'Updated with name: ' . $product->name,
+            ]);
             return new ProductResource($product);
         }
     }
@@ -73,7 +94,16 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         if ($product->delete()) {
-            // Helper::interactionProduct($product->id, 4, 'Suppression', 'orange', 'archive');
+            // TODO: update audit_log
+            AuditLog::create([
+                'user_id' => Auth::id(),
+                'action' => 'deleted',
+                'entity_type' => 'Product',
+                'entity_id' => $product->id,
+                'icon' => 'delete',
+                'color' => 'error',
+                'details' => 'Deleted product with name: ' . $product->name,
+            ]);
             return new ProductResource($product);
         };
     }

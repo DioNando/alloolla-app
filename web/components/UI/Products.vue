@@ -3,7 +3,7 @@
         <div class="mb-3 d-flex justify-space-between">
             <div class="d-flex ga-3 align-center">
                 <p>Page: {{ meta.current_page }} / {{ meta.last_page }}</p>
-                <p>Total des articles: {{ meta.total }}</p>
+                <p>Total des produits: {{ meta.total }}</p>
             </div>
             <div class="d-flex ga-3 align-center">
                 <v-btn @click="prevPage" :disabled="page <= 1">Précédent</v-btn>
