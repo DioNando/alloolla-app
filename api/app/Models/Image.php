@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['src'];
+
     public function products()
     {
         return $this->belongsToMany(Product::class);

@@ -4,16 +4,15 @@ import type { UserInterface } from "./user.interface";
 export interface ProductInterface {
   id?: number; 
   name: string;
-  // type: string;
+  type?: string;
   regular_price: number;
   description: string;
+  short_description?: string;
   user : UserInterface
-  // short_description: string;
-  // categories: categorie[];
-  // images: image[];
+  categories?: categorie[];
+  images?: image[];
+  id_product_wp: number;
 }
-
-// TODO: add UserInterface
 
 interface image {
     src: string;

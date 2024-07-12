@@ -4,7 +4,11 @@ import type { UserInterface } from "./user.interface";
 export interface CategoryInterface {
   id?: number; 
   name: string;
-  user : UserInterface
+  slug?: string;
+  description?: string;
+  display?: string;
+  id_category_wp?: number;
+  user : UserInterface;
 }
 
 export interface CategoriesPaginate {
