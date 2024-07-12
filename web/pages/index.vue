@@ -10,15 +10,18 @@
             <v-skeleton-loader class="grid-item border" v-for="i in 2" :key="i" type="article"
                 boilerplate></v-skeleton-loader>
         </div>
+        <div v-for="i in wooCommerceStore.reports" :key="i">
+            {{ i.description }}
+        </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { type UserInterface } from "~/interfaces/user.interface"
-
 const authStore = useAuthStore();
+const wooCommerceStore = useWooCommerceStore();
 
 authStore.initializeStore();
+wooCommerceStore.fetchReports();
 
 const user = authStore.user;
 </script>

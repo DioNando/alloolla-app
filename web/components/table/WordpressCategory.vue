@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCategories } from '@/api/wooCommerce/categoryApi'
+import { getCategories } from '@/api/wooCommerce/categoryWooCommerceApi'
 
 const categories = ref<any[]>([])
 

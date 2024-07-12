@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { getProducts } from '@/api/wooCommerce/productApi'
+import { getProducts } from '@/api/wooCommerce/productWooCommerceApi'
 
 const products = ref<any[]>([])
 
