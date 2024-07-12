@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\InteractionResource;
-use App\Models\Interaction;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
-class InteractionController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class InteractionController extends Controller
      */
     public function index()
     {
-        $data = Interaction::orderBy('id', 'desc')->get();
-        return InteractionResource::collection(($data));
-        // return InteractionResource::collection(Interaction::paginate(15)->get());
-        // return InteractionResource::collection(Interaction::get()->paginate(20));
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class InteractionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Interaction  $interaction
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Interaction $interaction)
+    public function show(Image $image)
     {
         //
     }
@@ -56,10 +52,10 @@ class InteractionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Interaction  $interaction
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Interaction $interaction)
+    public function edit(Image $image)
     {
         //
     }
@@ -68,10 +64,10 @@ class InteractionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Interaction  $interaction
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Interaction $interaction)
+    public function update(Request $request, Image $image)
     {
         //
     }
@@ -79,10 +75,10 @@ class InteractionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Interaction  $interaction
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Interaction $interaction)
+    public function destroy(Image $image)
     {
         //
     }

@@ -6,7 +6,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
     container_name: alloolla_api
-    restart: unless-stopped
+    restart: on-failure
     ports:
       - "5000:80"
     volumes:
@@ -28,11 +28,12 @@ services:
       context: ./web
       dockerfile: Dockerfile
     container_name: alloolla_web
+    restart: on-failure
     ports:
-      - "3000:3000"
-    # volumes:
-    #   - ./web:/app
-    #   - /app/node_modules
+      - "4444:3000"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
     depends_on:
       - api
     environment:

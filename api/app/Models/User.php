@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -50,11 +51,6 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany(Category::class);
-    }
-
-    public function interactions()
-    {
-        return $this->hasMany(Interaction::class);
     }
 
     public function audit_logs()

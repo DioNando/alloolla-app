@@ -15,13 +15,13 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function interactions()
-    {
-        return $this->hasMany(Interaction::class);
-    }
-
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
     }
 }
