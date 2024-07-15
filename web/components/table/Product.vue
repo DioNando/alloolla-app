@@ -32,8 +32,8 @@
                         <p class="table__description">{{ product.description }}</p>
                     </td>
                     <td>{{ product.regular_price }}</td>
-                    <td>{{ product.user.name }}</td>
-                    <td><v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
+                    <td>{{ product.user?.name }}</td>
+                    <td class="text-center"><v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
                             class="text-none"></v-btn></td>
                 </tr>
             </tbody>

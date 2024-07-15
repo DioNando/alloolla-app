@@ -8,10 +8,10 @@ export interface ProductInterface {
   regular_price: number;
   description: string;
   short_description?: string;
-  user : UserInterface
+  user?: UserInterface
   categories?: categorie[];
   images?: image[];
-  id_product_wp: number;
+  id_product_wp?: number;
 }
 
 interface image {

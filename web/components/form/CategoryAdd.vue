@@ -11,27 +11,28 @@
                 <v-row>
                     <v-col cols="12">
                         <v-text-field v-model="user.firstname" :counter="10" :rules="user.nameRules" label="Nom"
-                            hide-details required variant="outlined"></v-text-field>
+                            required variant="outlined"></v-text-field>
                     </v-col>
 
                     <v-col cols="12">
                         <v-text-field v-model="user.lastname" :counter="10" :rules="user.nameRules" label="Slug"
-                            hide-details required variant="outlined"></v-text-field>
+                            required variant="outlined"></v-text-field>
                     </v-col>
 
                     <v-col cols="12">
-                        <v-textarea label="Description" variant="outlined" hide-details></v-textarea>
+                        <v-textarea label="Description" variant="outlined"></v-textarea>
                     </v-col>
                     <!-- <v-col cols="12">
                         <v-file-input prepend-icon="mdi-image" label="Images" variant="outlined"></v-file-input>
                     </v-col> -->
                     <v-col>
                         <div class="d-flex flex-column flex-lg-row justify-end ga-3">
-                            <v-btn class="" variant="flat"click="validate">
+                            <v-btn class="" variant="flat" click="validate">
                                 Effacer
                             </v-btn>
 
-                            <v-btn class="" color="primary" variant="outlined" @click="reset" append-icon="mdi-cloud-upload">
+                            <v-btn class="" color="primary" variant="outlined" @click="reset"
+                                append-icon="mdi-cloud-upload">
                                 Publier
                             </v-btn>
 

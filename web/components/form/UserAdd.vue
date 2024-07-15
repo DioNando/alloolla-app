@@ -38,10 +38,9 @@ import type { UserInterface } from "@/interfaces/user.interface";
 import { addUser } from '@/api/userApi'
 
 const router = useRouter()
-
 const loading = ref(false)
 
-const rules = {
+const rules = ref<any>({
     nameRules: [
         value => {
             if (value) return true;
@@ -67,7 +66,7 @@ const rules = {
             if (value) return true;
             return 'Le mot de passe est requis.';
         },]
-}
+})
 
 const user = ref<UserInterface>({
     name: "",

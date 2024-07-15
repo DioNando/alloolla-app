@@ -1,9 +1,5 @@
 <template>
-    <v-card color="primary" max-width="344">
-        <v-card-title>
-            {{ props.user.name }}
-        </v-card-title>
-
+    <v-card color="primary" max-width="344" prepend-icon="mdi-account" :title="props.user.name">
         <v-card-subtitle class="mb-4">
             {{ props.user.email }}
         </v-card-subtitle>

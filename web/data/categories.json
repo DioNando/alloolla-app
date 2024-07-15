@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Ordinateurs portables"
+  },
+  {
+    "id": 2,
+    "name": "Ordinateurs de bureau"
+  },
+  {
+    "id": 3,
+    "name": "Tablettes"
+  },
+  {
+    "id": 4,
+    "name": "Smartphones"
+  },
+  {
+    "id": 5,
+    "name": "Composants PC"
+  },
+  {
+    "id": 6,
+    "name": "Périphériques"
+  },
+  {
+    "id": 7,
+    "name": "Imprimantes"
+  },
+  {
+    "id": 8,
+    "name": "Moniteurs"
+  },
+  {
+    "id": 9,
+    "name": "Stockage"
+  },
+  {
+    "id": 10,
+    "name": "Réseau"
+  },
+  {
+    "id": 11,
+    "name": "Accessoires"
+  },
+  {
+    "id": 12,
+    "name": "Logiciels"
+  },
+  {
+    "id": 13,
+    "name": "Jeux vidéo"
+  },
+  {
+    "id": 14,
+    "name": "Consoles de jeu"
+  },
+  {
+    "id": 15,
+    "name": "Télévisions"
+  },
+  {
+    "id": 16,
+    "name": "Appareils photo"
+  },
+  {
+    "id": 17,
+    "name": "Cameras"
+  },
+  {
+    "id": 18,
+    "name": "Audio"
+  },
+  {
+    "id": 19,
+    "name": "Drones"
+  },
+  {
+    "id": 20,
+    "name": "Domotique"
+  }
+]

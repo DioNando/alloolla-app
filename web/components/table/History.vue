@@ -4,8 +4,8 @@
         <v-table class="border" v-else fixed-header>
             <thead>
                 <tr>
-                    <th class="text-center">
-                        Icone
+                    <th class="text-left">
+                        Action
                     </th>
                     <th class="text-left">
                         Type
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 <tr v-for="i in auditLogs" :key="i.id">
-                    <td class="text-center"><v-icon :icon="`mdi-` + i.icon" :color="i.color"></v-icon></td>
+                    <td class="text-left"><v-icon :icon="`mdi-` + i.icon" :color="i.color" class="me-3"></v-icon>{{ i.action }} </td>
                     <td>{{ i.entity_type }}</td>
                     <td>{{ i.details }}</td>
                     <td>

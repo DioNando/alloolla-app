@@ -23,8 +23,23 @@ class ProductController extends Controller
         // $data = Product::get();
         // return ProductResource::collection($data);
 
+        // return ProductResource::collection(Product::with('user')->orderBy('id', 'desc')->paginate(10));
         return ProductResource::collection(Product::with('user')->paginate(10));
     }
+
+    // public function search(Request $request)
+    // {
+    //     $keywords = $request->input('keywords');
+    //     if ($request->input('stade') == 2) {
+    //         $data = Client::where('nom', 'LIKE', '%' . $keywords . '%')->where('stade', 2)
+    //             ->first();
+    //     } else {
+    //         $data = Client::where('nom', 'LIKE', '%' . $keywords . '%')
+    //             ->first();
+    //     }
+
+    //     return new ClientResource($data);
+    // }
 
     /**
      * Store a newly created resource in storage.

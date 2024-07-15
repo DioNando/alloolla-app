@@ -21,7 +21,7 @@ class CategoryController extends Controller
         // $data = Category::get();
         // return CategoryResource::collection($data->paginate(10));
 
-        return CategoryResource::collection(Category::with('user')->paginate(10));
+        return CategoryResource::collection(Category::with('user')->orderBy('id', 'desc')->paginate(10));
     }
 
     /**

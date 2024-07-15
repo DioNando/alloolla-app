@@ -17,6 +17,9 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
+            'description' => $this->description,
+            'display' => $this->display,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

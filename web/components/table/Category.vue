@@ -11,7 +11,10 @@
                         Nom
                     </th>
                     <th class="text-left">
-                        Utilisateur
+                        Description
+                    </th>
+                    <th class="text-left">
+                        Affichage
                     </th>
                 </tr>
             </thead>
@@ -19,7 +22,8 @@
                 <tr v-for="category in categories" :key="category.id">
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
-                    <td>{{ category.user.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>{{ category.display }}</td>
                 </tr>
             </tbody>
         </v-table>

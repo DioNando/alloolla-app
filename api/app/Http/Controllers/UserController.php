@@ -63,7 +63,14 @@ class UserController extends Controller
             return new UserResource($data->loadMissing('products'));
         }
 
-        return new UserResource($data->loadMissing('audit_logs'));
+        // return new UserResource($data->loadMissing('audit_logs'));
+
+        $data = User::with(['audit_logs' => function ($query) {
+            $query->latest()->limit(5);
+        }])->find($id);
+
+        return new UserResource($data);
+
         // return new UserResource($data->loadMissing('interactions')->loadMissing('audit_logs'));
         // return new UserResource($data);
     }

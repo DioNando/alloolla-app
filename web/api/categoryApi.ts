@@ -1,5 +1,3 @@
-// TODO: change article to category  
-
 import { type CategoriesPaginate } from "~/interfaces/category.interface";
 
 export const getCategories = async (page: number = 1): Promise<CategoriesPaginate> => {
