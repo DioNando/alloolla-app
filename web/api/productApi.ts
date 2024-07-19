@@ -73,6 +73,7 @@ export const addProduct = async (
           regular_price: data.regular_price,
           description: data.description,
           user_id: user_id,
+          categories: data.categories,
         },
       }
     );

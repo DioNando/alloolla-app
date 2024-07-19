@@ -51,6 +51,7 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
         // TODO: update audit_log
+        $product->categories()->attach($request->input('categories'));
         AuditLog::create([
             'user_id' => Auth::id(),
             'action' => 'Ajout',

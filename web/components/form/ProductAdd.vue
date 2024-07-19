@@ -32,8 +32,8 @@
                     <v-col cols="12">
                         <!-- <v-select v-model="product.categories" clearable chips label="Catégories" :items="categories" item-value="id"
                             item-title="name" multiple variant="outlined"></v-select> -->
-                        <v-select clearable chips label="Catégories" :items="categoryStore.categories" item-value="id" item-title="name"
-                         multiple variant="outlined"></v-select>
+                        <v-select v-model="product.categories" clearable chips label="Catégories" :items="categoryStore.categories" item-value="id"
+                            item-title="name" multiple variant="outlined"></v-select>
                     </v-col>
                     <v-col cols="12">
                         <v-file-input multiple prepend-icon="mdi-image" label="Images" variant="outlined"
@@ -55,10 +55,10 @@
                             <v-btn class="" variant="flat" @click="resetValidation">
                                 Effacer
                             </v-btn>
-                            <v-btn class="" color="primary" variant="outlined" append-icon="mdi-cloud-upload"
+                            <!-- <v-btn class="" color="primary" variant="outlined" append-icon="mdi-cloud-upload"
                                 @click="formAddProduct" :loading="loading">
                                 Publier
-                            </v-btn>
+                            </v-btn> -->
                             <v-btn class="" color="primary" @click="formAddProduct" :loading="loading"
                                 append-icon="mdi-archive">
                                 Ajouter
@@ -114,7 +114,7 @@ const rules = ref<any>({
 const product = ref<ProductInterface>({
     name: "",
     type: "",
-    regular_price: 0,
+    regular_price: 50,
     short_description: "",
     stock: 1,
     description: "",
@@ -147,6 +147,7 @@ const formAddProduct = async () => {
                 router.push('/products')
                 // TODO: add notification
             }
+            console.log(product.value)
         }
     } catch (error) {
         console.error('Failed to add product:', error)
