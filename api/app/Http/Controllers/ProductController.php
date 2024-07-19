@@ -53,12 +53,12 @@ class ProductController extends Controller
         // TODO: update audit_log
         AuditLog::create([
             'user_id' => Auth::id(),
-            'action' => 'created',
+            'action' => 'Ajout',
             'entity_type' => 'Product',
             'entity_id' => $product->id,
             'icon' => 'archive',
             'color' => 'success',
-            'details' => 'Created a new product with name: ' . $product->name,
+            'details' => 'Ajout d\'un nouveau produit: ' . $product->name,
         ]);
 
         return new ProductResource($product);
@@ -88,12 +88,12 @@ class ProductController extends Controller
             // TODO: update audit_log
             AuditLog::create([
                 'user_id' => Auth::id(),
-                'action' => 'updated',
-                'entity_type' => 'Product',
+                'action' => 'Modification',
+                'entity_type' => 'Produit',
                 'entity_id' => $product->id,
                 'icon' => 'pencil',
                 'color' => 'info',
-                'details' => 'Updated with name: ' . $product->name,
+                'details' => 'Modification de : ' . $product->name,
             ]);
             return new ProductResource($product);
         }
@@ -112,12 +112,12 @@ class ProductController extends Controller
             // TODO: update audit_log
             AuditLog::create([
                 'user_id' => Auth::id(),
-                'action' => 'deleted',
-                'entity_type' => 'Product',
+                'action' => 'Suppression',
+                'entity_type' => 'Produit',
                 'entity_id' => $product->id,
                 'icon' => 'delete',
                 'color' => 'error',
-                'details' => 'Deleted product with name: ' . $product->name,
+                'details' => 'Suppression de : ' . $product->name,
             ]);
             return new ProductResource($product);
         };

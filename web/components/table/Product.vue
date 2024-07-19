@@ -10,10 +10,16 @@
                     <th class="text-left">
                         Nom
                     </th>
+                    <!-- <th class="text-left">
+                        Titre
+                    </th> -->
                     <th class="text-left">
                         Description
                     </th>
-                    <th class="text-left">
+                    <th class="text-right">
+                        Stock
+                    </th>
+                    <th class="text-right">
                         Prix
                     </th>
                     <th class="text-left">
@@ -29,11 +35,19 @@
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>
-                        <p class="table__description">{{ product.description }}</p>
+                        <p class="table__description">{{ product.short_description }}</p>
                     </td>
-                    <td>{{ product.regular_price }}</td>
+                    <!-- <td>
+                        <p class="table__description">{{ product.description }}</p>
+                    </td> -->
+                    <td class="text-right">{{ product.stock }}</td>
+                    <td class="text-right">{{ product.regular_price }}</td>
                     <td>{{ product.user?.name }}</td>
-                    <td class="text-center"><v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
+                    <td class="text-center">
+                        <v-btn variant="text" color="primary" icon="mdi-cloud-upload"
+                            class="text-none" :disabled="product.id_product_wp ? true : false"
+                            @click="uploadProduct(product)"></v-btn>
+                        <v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
                             class="text-none"></v-btn></td>
                 </tr>
             </tbody>
@@ -58,6 +72,8 @@
 </template>
 
 <script setup lang="ts">
+import { addProductWooCommerce } from '@/api/wooCommerce/productWooCommerceApi'
+
 import { getProducts } from '@/api/productApi'
 
 import { type ProductInterface } from "~/interfaces/product.interface";
@@ -88,6 +104,15 @@ const fetchUsers = async () => {
         console.error('Failed to fetch products:', error);
     }
 };
+
+const uploadProduct = async (product: ProductInterface) => {
+    try {
+        const response = await addProductWooCommerce(product)
+        console.log(response)
+    } catch (error) {
+        alert('error')
+    }
+}
 
 const nextPage = () => {
     if (page.value < meta.value.last_page) {

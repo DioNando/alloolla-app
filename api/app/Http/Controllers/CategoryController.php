@@ -6,8 +6,10 @@ use App\Helper\Helper;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
+use App\Models\AuditLog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,12 +18,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $data = Category::get();
-        // return CategoryResource::collection($data->paginate(10));
 
-        return CategoryResource::collection(Category::with('user')->orderBy('id', 'desc')->paginate(10));
+        if ($request->query('includeAll')) {
+            $data = Category::get();
+            return CategoryResource::collection($data);
+        }
+
+        return CategoryResource::collection(Category::with('user')->orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -35,6 +40,15 @@ class CategoryController extends Controller
         $category = Category::create($request->all());
         // Helper::interactionCategory($category->id, $request->input('user_id'), 'Ajout', 'grey', 'tag', 'Création');
         // TODO: add audit_log
+        AuditLog::create([
+            'user_id' => Auth::id(),
+            'action' => 'Ajout',
+            'entity_type' => 'Catégorie',
+            'entity_id' => $category->id,
+            'icon' => 'tag',
+            'color' => 'info',
+            'details' => 'Ajout de : ' . $category->name,
+        ]);
         return new CategoryResource($category);
     }
 
@@ -58,9 +72,19 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        if($category->update($request->all())) {
+        if ($category->update($request->all())) {
             // Helper::interactionCategory($category->id, $request->input('user_id'), 'Modification', 'orange', 'archive', 'Mise à jour');
             // TODO: add audit_log
+
+            AuditLog::create([
+                'user_id' => Auth::id(),
+                'action' => 'Modification',
+                'entity_type' => 'Catégorie',
+                'entity_id' => $category->id,
+                'icon' => 'pencil',
+                'color' => 'info',
+                'details' => 'Modification de : ' . $category->name,
+            ]);
             return new CategoryResource($category);
         }
     }
@@ -73,10 +97,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = Category::findOrFail($id);
-        if ($data->delete()) {
+        $category = Category::findOrFail($id);
+        if ($category->delete()) {
             // TODO: add audit_log
-            return new CategoryResource($data);
+
+            AuditLog::create([
+                'user_id' => Auth::id(),
+                'action' => 'Suppression',
+                'entity_type' => 'Catégorie',
+                'entity_id' => $category->id,
+                'icon' => 'delete',
+                'color' => 'error',
+                'details' => 'Suppression de : ' . $category->name,
+            ]);
+            return new CategoryResource($category);
         };
     }
 }

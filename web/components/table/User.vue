@@ -7,6 +7,9 @@
                     <th class="text-left">
                         ID
                     </th>
+                    <th class="text-center">
+                        Rôle
+                    </th>
                     <th class="text-left">
                         Nom
                     </th>
@@ -21,6 +24,7 @@
             <tbody>
                 <tr v-for="user in users" :key="user.id">
                     <td>{{ user.id }}</td>
+                    <td class="text-center"><v-icon :icon="user.is_admin ? 'mdi-account-cog' : 'mdi-account'" :color="user.is_admin ? 'warning' : 'grey'" ></v-icon></td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td><v-btn @click="$emit('user-emit', user.id)" variant="text" color="primary" icon="mdi-chevron-right"

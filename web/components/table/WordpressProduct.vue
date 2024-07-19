@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { getProducts } from '@/api/wooCommerce/productWooCommerceApi'
+import { getProductsWooCommerce } from '@/api/wooCommerce/productWooCommerceApi'
 
 const products = ref<any[]>([])
 
@@ -47,7 +47,7 @@ const loading = ref(true);
 
 const fetchProducts = async () => {
     try {
-        const response = await getProducts();
+        const response = await getProductsWooCommerce();
         products.value = response;
         // console.log('Produits: ' + products.value.length);
         // console.table(products.value);

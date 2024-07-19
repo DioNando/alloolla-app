@@ -20,6 +20,7 @@ class CategoryResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'display' => $this->display,
+            'id_category_wp' => $this->id_category_wp,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

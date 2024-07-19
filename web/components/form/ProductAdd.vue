@@ -30,10 +30,10 @@
                             variant="outlined"></v-textarea>
                     </v-col>
                     <v-col cols="12">
-                        <v-select v-model="product.categories" clearable chips label="Catégories" :items="categories" item-value="id"
-                            item-title="name" multiple variant="outlined"></v-select>
-                        <!-- <v-select clearable chips label="Catégories" :items="categoryStore.categories" item-value="id" item-title="name"
-                         multiple variant="outlined"></v-select> -->
+                        <!-- <v-select v-model="product.categories" clearable chips label="Catégories" :items="categories" item-value="id"
+                            item-title="name" multiple variant="outlined"></v-select> -->
+                        <v-select clearable chips label="Catégories" :items="categoryStore.categories" item-value="id" item-title="name"
+                         multiple variant="outlined"></v-select>
                     </v-col>
                     <v-col cols="12">
                         <v-file-input multiple prepend-icon="mdi-image" label="Images" variant="outlined"
@@ -116,6 +116,7 @@ const product = ref<ProductInterface>({
     type: "",
     regular_price: 0,
     short_description: "",
+    stock: 1,
     description: "",
     categories: [],
     images: []
@@ -127,6 +128,7 @@ const resetValidation = () => {
         type: "",
         regular_price: 0,
         short_description: "",
+        stock: 1,
         description: "",
         categories: [],
         images: []

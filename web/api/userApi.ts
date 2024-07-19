@@ -55,6 +55,7 @@ export const addUser = async (data: UserInterface): Promise<UserInterface> => {
         name: data.name,
         email: data.email,
         password: data.password,
+        is_admin: data.is_admin,
       }
     });
 

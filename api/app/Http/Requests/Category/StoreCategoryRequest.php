@@ -25,10 +25,10 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'regular_price' => ['required', 'integer'],
+            'slug' => ['required', 'string'],
+            'display' => ['required', 'string'],
             'description' => ['required', 'string'],
             'user_id' => ['required'],
-
         ];
     }
 }

@@ -17,8 +17,12 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'type' => $this->type,
             'regular_price' => $this->regular_price,
+            'stock' => $this->stock,
+            'short_description' => $this->short_description,
             'description' => $this->description,
+            'id_product_wp' => $this->id_product_wp,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

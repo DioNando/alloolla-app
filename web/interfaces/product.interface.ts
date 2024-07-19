@@ -7,6 +7,7 @@ export interface ProductInterface {
   type?: string;
   regular_price: number;
   description: string;
+  stock: number;
   short_description?: string;
   user?: UserInterface
   categories?: categorie[];

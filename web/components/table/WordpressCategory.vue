@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCategories } from '@/api/wooCommerce/categoryWooCommerceApi'
+import { getCategoriesWooCommerce } from '@/api/wooCommerce/categoryWooCommerceApi'
 
 const categories = ref<any[]>([])
 
@@ -37,13 +37,13 @@ const loading = ref(true);
 
 const fetchCategories = async () => {
     try {
-        const response = await getCategories();
+        const response = await getCategoriesWooCommerce();
         categories.value = response;
         // console.log('Categories: ' + categories.value.length);
         // console.table(categories.value);
         loading.value = false;
     } catch (error) {
-        console.error('Failed to fetch categorys:', error);
+        console.error('Failed to fetch categories:', error);
     }
 };
 

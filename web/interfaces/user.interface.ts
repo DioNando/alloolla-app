@@ -5,7 +5,7 @@ export interface UserInterface {
   name: string;
   email: string;
   password?: string;
-  is_admin?: boolean;
+  is_admin?: number;
 }
 
 export interface UserWithTokenInterface {

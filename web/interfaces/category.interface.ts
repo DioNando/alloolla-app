@@ -8,7 +8,7 @@ export interface CategoryInterface {
   description?: string;
   display?: string;
   id_category_wp?: number;
-  user : UserInterface;
+  user?: UserInterface;
 }
 
 export interface CategoriesPaginate {

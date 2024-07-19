@@ -16,6 +16,10 @@
                         <v-text-field v-model="user.password" label="Mot de passe" variant="outlined"
                             :rules="rules.passwordRules" type="password"></v-text-field>
                     </v-col>
+                    <v-col cols="12">
+                        <v-switch v-model="user.is_admin" :label="`Administrateur`" false-value="0"
+                            true-value="1" color="warning"></v-switch>
+                    </v-col>
                     <v-col>
                         <div class="d-flex flex-column flex-lg-row justify-end ga-3">
                             <v-btn class="" variant="flat" @click="resetValidation">
@@ -72,6 +76,7 @@ const user = ref<UserInterface>({
     name: "",
     email: "",
     password: "",
+    is_admin: 0,
 });
 
 const resetValidation = () => {
@@ -79,6 +84,7 @@ const resetValidation = () => {
         name: "",
         email: "",
         password: "",
+        is_admin: 0,
     };
 }
 

@@ -16,6 +16,9 @@
                     <th class="text-left">
                         Affichage
                     </th>
+                    <th class="text-center">
+                        Action
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +27,9 @@
                     <td>{{ category.name }}</td>
                     <td>{{ category.description }}</td>
                     <td>{{ category.display }}</td>
+                    <td class="text-center"><v-btn variant="text" color="primary" icon="mdi-cloud-upload"
+                            class="text-none" :disabled="category.id_category_wp ? true : false"
+                            @click="uploadCategory(category)"></v-btn></td>
                 </tr>
             </tbody>
         </v-table>
@@ -47,6 +53,8 @@
 </template>
 
 <script setup lang="ts">
+import { addCategoryWooCommerce } from '@/api/wooCommerce/categoryWooCommerceApi'
+
 import { getCategories } from '@/api/categoryApi'
 
 import { type CategoryInterface } from "~/interfaces/category.interface";
@@ -77,6 +85,15 @@ const fetchCategories = async () => {
         console.error('Failed to fetch categories:', error);
     }
 };
+
+const uploadCategory = async (category: CategoryInterface) => {
+    try {
+        const response = await addCategoryWooCommerce(category)
+        console.log(response)
+    } catch (error) {
+        alert('error')
+    }
+}
 
 const nextPage = () => {
     if (page.value < meta.value.last_page) {
