@@ -24,6 +24,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'id_product_wp' => $this->id_product_wp,
             'categories' => $this->categories,
+            'images' => $this->images,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

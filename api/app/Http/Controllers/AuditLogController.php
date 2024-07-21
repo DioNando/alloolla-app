@@ -15,7 +15,7 @@ class AuditLogController extends Controller
      */
     public function index()
     {
-        $data = AuditLog::orderBy('id', 'desc')->paginate(20);
+        $data = AuditLog::orderBy('id', 'desc')->paginate(5);
         return AuditLogResource::collection(($data));
     }
 

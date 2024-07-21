@@ -3,8 +3,8 @@
         <TextTitle :title="'Produits'" />
         <div class="mb-3 d-flex align-center justify-space-between">
             <v-tabs v-model="tab" align-tabs="start" color="primary">
-                <v-tab append-icon="mdi-view-dashboard" :value="1">Galerie</v-tab>
-                <v-tab append-icon="mdi-format-list-numbered" :value="2">Liste</v-tab>
+                <v-tab append-icon="mdi-format-list-numbered" :value="1">Liste</v-tab>
+                <v-tab append-icon="mdi-view-dashboard" :value="2">Galerie</v-tab>
                 <v-tab append-icon="mdi-plus" :value="3">Nouveau</v-tab>
             </v-tabs>
             <div class="search" :class="tab && tab != 3 ? '' : 'opacity-0'">
@@ -15,10 +15,10 @@
 
         <v-tabs-window v-model="tab">
             <v-tabs-window-item :value="1">
-                <UIProducts />
+                <TableProduct />
             </v-tabs-window-item>
             <v-tabs-window-item :value="2">
-                <TableProduct />
+                <UIProducts />
             </v-tabs-window-item>
             <v-tabs-window-item :value="3">
                 <UIAddProduct />

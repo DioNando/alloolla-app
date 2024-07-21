@@ -16,6 +16,9 @@
                     <th class="text-left">
                         Description
                     </th>
+                    <th class="text-left">
+                        Catégories
+                    </th>
                     <th class="text-right">
                         Stock
                     </th>
@@ -40,15 +43,23 @@
                     <!-- <td>
                         <p class="table__description">{{ product.description }}</p>
                     </td> -->
+                    <td class="text-left">
+                        <v-chip v-for="i in product.categories" class="me-2">
+                            {{ i.name }}
+                        </v-chip>
+                    </td>
                     <td class="text-right">{{ product.stock }}</td>
                     <td class="text-right">{{ product.regular_price }}</td>
                     <td>{{ product.user?.name }}</td>
                     <td class="text-center">
-                        <v-btn variant="text" color="primary" icon="mdi-cloud-upload"
-                            class="text-none" :disabled="product.id_product_wp ? true : false"
-                            @click="uploadProduct(product)"></v-btn>
+                        <v-btn variant="text" color="primary" icon="mdi-cloud-upload" class="text-none"
+                            :disabled="product.id_product_wp ? true : false" @click="uploadProduct(product)"
+                            :loading="uploadLoading == product.id"></v-btn>
+                        <!-- <v-btn variant="text" color="primary" icon="mdi-cloud-upload" class="text-none"
+                            :disabled="product.id_product_wp ? true : false" @click="uploadProduct(product)"></v-btn> -->
                         <v-btn :to="`/products/${product.id}`" variant="text" color="primary" icon="mdi-chevron-right"
-                            class="text-none"></v-btn></td>
+                            class="text-none"></v-btn>
+                    </td>
                 </tr>
             </tbody>
         </v-table>
@@ -106,13 +117,20 @@ const fetchUsers = async () => {
 };
 
 const uploadProduct = async (product: ProductInterface) => {
+    if (product.id) {
+        uploadLoading.value = product.id
+    }
     try {
         const response = await addProductWooCommerce(product)
         console.log(response)
+        alert('Upload ok')
+        uploadLoading.value = null
     } catch (error) {
         alert('error')
     }
 }
+
+const uploadLoading = ref<number | null>(null)
 
 const nextPage = () => {
     if (page.value < meta.value.last_page) {

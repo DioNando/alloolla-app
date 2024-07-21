@@ -113,7 +113,7 @@ const rules = ref<any>({
 
 const product = ref<ProductInterface>({
     name: "",
-    type: "",
+    type: "simple",
     regular_price: 50,
     short_description: "",
     stock: 1,
@@ -125,7 +125,7 @@ const product = ref<ProductInterface>({
 const resetValidation = () => {
     product.value = {
         name: "",
-        type: "",
+        type: "simple",
         regular_price: 0,
         short_description: "",
         stock: 1,

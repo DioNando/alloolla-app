@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Utilisateurs",
+    "link": "/users",
+    "icon": "mdi-account-group",
+    "is_admin": true
+  },
+  {
+    "title": "Historique",
+    "link": "/history",
+    "icon": "mdi-history",
+    "is_admin": true
+  }
+]

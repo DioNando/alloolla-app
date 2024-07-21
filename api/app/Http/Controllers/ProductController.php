@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Helper\Helper;
 use App\Models\AuditLog;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -23,8 +24,8 @@ class ProductController extends Controller
         // $data = Product::get();
         // return ProductResource::collection($data);
 
-        // return ProductResource::collection(Product::with('user')->orderBy('id', 'desc')->paginate(10));
-        return ProductResource::collection(Product::with('user')->paginate(10));
+        return ProductResource::collection(Product::with('user')->orderBy('id', 'desc')->paginate(10));
+        // return ProductResource::collection(Product::with('user')->paginate(10));
     }
 
     // public function search(Request $request)
@@ -52,6 +53,15 @@ class ProductController extends Controller
         $product = Product::create($request->all());
         // TODO: update audit_log
         $product->categories()->attach($request->input('categories'));
+
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $file) {
+        //         $path = $file->store('images', 'public');
+        //         $image = Image::create(['src' => $path]);
+        //         $product->images()->attach($image);
+        //     }
+        // }
+
         AuditLog::create([
             'user_id' => Auth::id(),
             'action' => 'Ajout',

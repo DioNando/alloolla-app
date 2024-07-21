@@ -29,7 +29,7 @@
                     <td>{{ category.display }}</td>
                     <td class="text-center"><v-btn variant="text" color="primary" icon="mdi-cloud-upload"
                             class="text-none" :disabled="category.id_category_wp ? true : false"
-                            @click="uploadCategory(category)"></v-btn></td>
+                            @click="uploadCategory(category)" :loading="uploadLoading == category.id"></v-btn></td>
                 </tr>
             </tbody>
         </v-table>
@@ -87,13 +87,20 @@ const fetchCategories = async () => {
 };
 
 const uploadCategory = async (category: CategoryInterface) => {
+    if (category.id) {
+        uploadLoading.value = category.id
+    }
     try {
         const response = await addCategoryWooCommerce(category)
         console.log(response)
+        alert('Upload ok')
+        uploadLoading.value = null
     } catch (error) {
         alert('error')
     }
 }
+
+const uploadLoading = ref<number | null>(null)
 
 const nextPage = () => {
     if (page.value < meta.value.last_page) {

@@ -1,82 +1,102 @@
 [
   {
     "id": 1,
-    "name": "Ordinateurs portables"
+    "name": "Ordinateurs portables",
+    "description": "Large sélection d'ordinateurs portables pour tous les besoins, y compris les jeux, le travail et l'usage personnel."
   },
   {
     "id": 2,
-    "name": "Ordinateurs de bureau"
+    "name": "Ordinateurs de bureau",
+    "description": "Ordinateurs de bureau puissants pour la maison et le bureau, parfaits pour les tâches intensives."
   },
   {
     "id": 3,
-    "name": "Tablettes"
+    "name": "Tablettes",
+    "description": "Tablettes polyvalentes pour la navigation, le divertissement et la productivité en déplacement."
   },
   {
     "id": 4,
-    "name": "Smartphones"
+    "name": "Smartphones",
+    "description": "Smartphones de dernière génération avec les toutes dernières fonctionnalités et technologies."
   },
   {
     "id": 5,
-    "name": "Composants PC"
+    "name": "Composants PC",
+    "description": "Composants pour assembler et mettre à niveau des PC, y compris processeurs, cartes mères et cartes graphiques."
   },
   {
     "id": 6,
-    "name": "Périphériques"
+    "name": "Périphériques",
+    "description": "Accessoires essentiels comme les claviers, souris, webcams et autres périphériques."
   },
   {
     "id": 7,
-    "name": "Imprimantes"
+    "name": "Imprimantes",
+    "description": "Imprimantes de haute qualité pour l'impression domestique et professionnelle, y compris les imprimantes jet d'encre et laser."
   },
   {
     "id": 8,
-    "name": "Moniteurs"
+    "name": "Moniteurs",
+    "description": "Moniteurs haute résolution pour le travail, les jeux et le divertissement."
   },
   {
     "id": 9,
-    "name": "Stockage"
+    "name": "Stockage",
+    "description": "Solutions de stockage, y compris disques durs externes, SSD, et clés USB."
   },
   {
     "id": 10,
-    "name": "Réseau"
+    "name": "Réseau",
+    "description": "Équipements de réseau, y compris routeurs, modems et dispositifs de réseau sans fil."
   },
   {
     "id": 11,
-    "name": "Accessoires"
+    "name": "Accessoires",
+    "description": "Une variété d'accessoires pour compléter et améliorer vos appareils électroniques."
   },
   {
     "id": 12,
-    "name": "Logiciels"
+    "name": "Logiciels",
+    "description": "Logiciels pour toutes les applications, y compris les systèmes d'exploitation, les suites bureautiques et les logiciels de sécurité."
   },
   {
     "id": 13,
-    "name": "Jeux vidéo"
+    "name": "Jeux vidéo",
+    "description": "Jeux vidéo pour toutes les plateformes, y compris les titres populaires et les nouveautés."
   },
   {
     "id": 14,
-    "name": "Consoles de jeu"
+    "name": "Consoles de jeu",
+    "description": "Consoles de jeu de dernière génération pour une expérience de jeu immersive."
   },
   {
     "id": 15,
-    "name": "Télévisions"
+    "name": "Télévisions",
+    "description": "Téléviseurs haute définition et 4K pour une expérience de visionnage optimale."
   },
   {
     "id": 16,
-    "name": "Appareils photo"
+    "name": "Appareils photo",
+    "description": "Appareils photo numériques pour les amateurs et les professionnels, offrant une qualité d'image exceptionnelle."
   },
   {
     "id": 17,
-    "name": "Cameras"
+    "name": "Cameras",
+    "description": "Caméras pour la vidéo professionnelle et amateur, y compris les caméras d'action et de sécurité."
   },
   {
     "id": 18,
-    "name": "Audio"
+    "name": "Audio",
+    "description": "Équipements audio, y compris les casques, enceintes et systèmes audio domestiques."
   },
   {
     "id": 19,
-    "name": "Drones"
+    "name": "Drones",
+    "description": "Drones pour la photographie aérienne, le loisir et les applications professionnelles."
   },
   {
     "id": 20,
-    "name": "Domotique"
+    "name": "Domotique",
+    "description": "Appareils de domotique pour automatiser et sécuriser votre maison, y compris les thermostats intelligents et les caméras de sécurité."
   }
 ]

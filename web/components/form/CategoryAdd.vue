@@ -33,10 +33,10 @@
                                 Effacer
                             </v-btn>
 
-                            <v-btn class="" color="primary" variant="outlined" @click="formAddCategory"
+                            <!-- <v-btn class="" color="primary" variant="outlined" @click="formAddCategory"
                                 append-icon="mdi-cloud-upload">
                                 Publier
-                            </v-btn>
+                            </v-btn> -->
 
                             <v-btn class="" color="primary" @click="formAddCategory" append-icon="mdi-tag" :loading="loading">
                                 Ajouter

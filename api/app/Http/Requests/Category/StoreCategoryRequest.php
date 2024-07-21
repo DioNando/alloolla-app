@@ -27,7 +27,6 @@ class StoreCategoryRequest extends FormRequest
             'name' => ['required', 'string'],
             'slug' => ['required', 'string'],
             'display' => ['required', 'string'],
-            'description' => ['required', 'string'],
             'user_id' => ['required'],
         ];
     }

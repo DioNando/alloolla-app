@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/admin', function () {
     $credentials = [
-        'email' => 'admin@admin.com',
+        'email' => 'admin@alloolla.net',
         'password' => 'password'
     ];
 
@@ -31,8 +31,9 @@ Route::get('/admin', function () {
 
     if (!$user) {
         $user = new \App\Models\User();
-        $user->name = 'Admin';
+        $user->name = 'Administrateur Alloolla';
         $user->email = $credentials['email'];
+        $user->is_admin = 1;
         $user->password = Hash::make($credentials['password']);
         $user->save();
     }

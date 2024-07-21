@@ -21,6 +21,7 @@ interface image {
 
 interface categorie {
     id: number;
+    name?: string;
 }
 
 export interface ProductsPaginate {

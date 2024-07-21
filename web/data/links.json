@@ -2,31 +2,37 @@
   {
     "title": "Tableau de bord",
     "link": "/",
-    "icon": "mdi-view-dashboard"
+    "icon": "mdi-view-dashboard",
+    "is_admin": false
   },
   {
     "title": "WordPress",
     "link": "/wordpress",
-    "icon": "mdi-wordpress"
+    "icon": "mdi-wordpress",
+    "is_admin": false
   },
   {
     "title": "Produits",
     "link": "/products",
-    "icon": "mdi-archive"
+    "icon": "mdi-archive",
+    "is_admin": false
   },
   {
     "title": "Catégories",
     "link": "/categories",
-    "icon": "mdi-tag"
+    "icon": "mdi-tag",
+    "is_admin": false
   },
   {
     "title": "Utilisateurs",
     "link": "/users",
-    "icon": "mdi-account-group"
+    "icon": "mdi-account-group",
+    "is_admin": true
   },
   {
     "title": "Historique",
     "link": "/history",
-    "icon": "mdi-history"
+    "icon": "mdi-history",
+    "is_admin": true
   }
 ]

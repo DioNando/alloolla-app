@@ -4,7 +4,10 @@
             <TextTitle :title="'Menu'" class="px-5 pt-3" />
             <v-list>
                 <NuxtLink v-for="(l, index) in links" :key="index" :to="l.link">
-                    <v-list-item :prepend-icon="l.icon" :title="l.title" link></v-list-item>
+                    <v-list-item v-if="!l.is_admin" :prepend-icon="l.icon" :title="l.title" link></v-list-item>
+                </NuxtLink>
+                <NuxtLink v-for="(l, index) in linksAdmin" :key="index" :to="l.link">
+                    <v-list-item v-if="user?.is_admin" :prepend-icon="l.icon" :title="l.title" link></v-list-item>
                 </NuxtLink>
             </v-list>
         </div>
@@ -17,9 +20,15 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import links from '~/data/links.json'
+import linksAdmin from '~/data/linksAdmin.json'
 
 import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/stores/auth'; // import the auth store we just created
+
+const authStore = useAuthStore();
+
+authStore.initializeStore();
+const user = authStore.user;
 
 const router = useRouter();
 
